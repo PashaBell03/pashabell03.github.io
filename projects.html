@@ -1,192 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects | Portfolio</title>
-  <style>
-    /* Base Styles */
-    :root {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --text-color: #f8fafc;
-      --text-muted: #94a3b8;
-      --accent-color: #38bdf8;
-      --border-radius: 12px;
-    }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-      padding: 2rem 1rem;
-    }
+<title>Projects | Pavel Belsky</title>
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+<link rel="stylesheet" href="css/styles.css">
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: var(--text-color);
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
 
-    /* Projects List Container */
-    .projects-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    /* Individual Project Card */
-    .project-card {
-      display: flex;
-      flex-direction: row;
-      background-color: var(--card-bg);
-      border-radius: var(--border-radius);
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Image on Left */
-    .project-image {
-      flex: 0 0 40%;
-      min-height: 220px;
-    }
-
-    .project-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Content on Right */
-    .project-content {
-      flex: 1;
-      padding: 1.75rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .project-title {
-      font-size: 1.5rem;
-      margin-bottom: 0.75rem;
-      color: var(--text-color);
-    }
-
-    .project-description {
-      color: var(--text-muted);
-      font-size: 1rem;
-      margin-bottom: 1.25rem;
-    }
-
-    /* Action Links/Tags */
-    .project-links {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .project-links a {
-      color: var(--accent-color);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-
-    .project-links a:hover {
-      text-decoration: underline;
-    }
-
-    /* Mobile Responsiveness */
-    @media (max-width: 768px) {
-      .project-card {
-        flex-direction: column;
-      }
-
-      .project-image {
-        min-height: 200px;
-      }
-    }
-  </style>
 </head>
+
+
 <body>
 
-  <main class="container">
-    <h1>Featured Projects</h1>
 
-    <div class="projects-list">
+<!-- ================= NAVIGATION ================= -->
 
-      <!-- Project 1 -->
-      <article class="project-card">
-        <div class="project-image">
-          <img src="https://via.placeholder.com/600x400" alt="Project 1 Preview">
-        </div>
-        <div class="project-content">
-          <h2 class="project-title">Project Title One</h2>
-          <p class="project-description">
-            A concise description of your first project. Explain what problem it solves, the tools or technologies used, and your primary role in bringing it to completion.
-          </p>
-          <div class="project-links">
-            <a href="#" target="_blank" rel="noopener">View Live Site &rarr;</a>
-            <a href="#" target="_blank" rel="noopener">GitHub Repo &rarr;</a>
-          </div>
-        </div>
-      </article>
+<header class="navbar">
 
-      <!-- Project 2 -->
-      <article class="project-card">
-        <div class="project-image">
-          <img src="https://via.placeholder.com/600x400" alt="Project 2 Preview">
-        </div>
-        <div class="project-content">
-          <h2 class="project-title">Project Title Two</h2>
-          <p class="project-description">
-            A concise description of your second project. Detail key functionality, workflow integrations, or data processing pipelines implemented during development.
-          </p>
-          <div class="project-links">
-            <a href="#" target="_blank" rel="noopener">View Live Site &rarr;</a>
-            <a href="#" target="_blank" rel="noopener">GitHub Repo &rarr;</a>
-          </div>
-        </div>
-      </article>
+<div class="nav-container">
 
-      <!-- Project 3 -->
-      <article class="project-card">
-        <div class="project-image">
-          <img src="https://via.placeholder.com/600x400" alt="Project 3 Preview">
-        </div>
-        <div class="project-content">
-          <h2 class="project-title">Project Title Three</h2>
-          <p class="project-description">
-            A concise description of your third project. Highlight any notable tech stacks, unique visual outputs, or key performance metrics achieved.
-          </p>
-          <div class="project-links">
-            <a href="#" target="_blank" rel="noopener">View Live Site &rarr;</a>
-            <a href="#" target="_blank" rel="noopener">GitHub Repo &rarr;</a>
-          </div>
-        </div>
-      </article>
 
-    </div>
-  </main>
+<a class="logo" href="index.html">
+PAVEL BELSKY
+</a>
+
+
+
+<nav class="nav-links">
+
+<a href="index.html">
+Home
+</a>
+
+<a href="projects.html" class="active">
+Projects
+</a>
+
+<a href="about.html">
+About
+</a>
+
+<a href="contact.html">
+Contact
+</a>
+
+</nav>
+
+
+</div>
+
+</header>
+
+
+
+
+
+<!-- ================= PAGE HERO ================= -->
+
+
+<section class="page-hero">
+
+<div class="section-container">
+
+
+<p class="hero-tag">
+SELECTED WORK
+</p>
+
+
+<h1>
+Digital Twin<br>
+& 3D GIS Projects
+</h1>
+
+
+<p>
+
+A collection of interactive spatial experiences combining
+GIS, 3D modeling, visualization, and storytelling.
+
+</p>
+
+
+</div>
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ================= PROJECTS ================= -->
+
+
+<section class="section">
+
+
+<div class="section-container">
+
+
+
+
+
+<!-- PROJECT 1 -->
+
+
+<article class="project-large-card">
+
+
+<div class="project-large-image">
+
+<img src="images/kent.jpg"
+alt="Kent City Hall Digital Twin">
+
+</div>
+
+
+
+<div class="project-large-content">
+
+
+<div class="project-category">
+
+DIGITAL TWIN • GOVERNMENT • FACILITIES MANAGEMENT
+
+</div>
+
+
+
+<h2>
+Kent City Hall Campus Digital Twin
+</h2>
+
+
+
+<p>
+
+A comprehensive 3D GIS digital twin developed for
+the City of Kent, Washington. The platform integrates
+building models, spatial data, and interactive web
+visualization to support facilities management,
+planning, and decision making.
+
+</p>
+
+
+
+<div class="tech-tags">
+
+
+<span>ArcGIS Online</span>
+
+<span>ArcGIS Pro</span>
+
+<span>3D GIS</span>
+
+<span>SketchUp</span>
+
+<span>Experience Builder</span>
+
+
+</div>
+
+
+
+<div class="project-buttons">
+
+
+<a href="#" class="button primary">
+View Project →
+</a>
+
+
+<a href="#" class="button secondary">
+StoryMap
+</a>
+
+
+</div>
+
+
+
+</div>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+
+<!-- PROJECT 2 -->
+
+
+<article class="project-large-card">
+
+
+
+<div class="project-large-image">
+
+<img src="images/ellis.jpg"
+alt="Ellis Island Hospital Digital Twin">
+
+</div>
+
+
+
+
+<div class="project-large-content">
+
+
+<div class="project-category">
+
+HISTORIC PRESERVATION • CULTURAL HERITAGE
+
+</div>
+
+
+
+<h2>
+Ellis Island Hospital Complex Digital Reconstruction
+</h2>
+
+
+
+<p>
+
+A digital preservation project reconstructing the
+historic immigrant hospital complex on Ellis Island.
+The experience combines 3D models, historic research,
+and interactive storytelling to visualize spaces that
+are no longer accessible.
+
+</p>
+
+
+
+<div class="tech-tags">
+
+
+<span>Blender</span>
+
+<span>ArcGIS Scene Viewer</span>
+
+<span>Historic Research</span>
+
+<span>3D Modeling</span>
+
+
+</div>
+
+
+
+
+<div class="project-buttons">
+
+
+<a href="#" class="button primary">
+View Project →
+</a>
+
+
+<a href="#" class="button secondary">
+Experience Builder
+</a>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+<!-- PROJECT 3 -->
+
+
+<article class="project-large-card">
+
+
+
+<div class="project-large-image">
+
+
+<img src="images/brooklyn.jpg"
+alt="Brooklyn Industrial Heritage">
+
+
+</div>
+
+
+
+
+
+<div class="project-large-content">
+
+
+
+<div class="project-category">
+
+HISTORIC MAPPING • STORYTELLING
+
+</div>
+
+
+
+<h2>
+Brooklyn Industrial Heritage Explorer
+</h2>
+
+
+
+
+<p>
+
+An interactive historical map experience documenting
+Brooklyn's former industrial landscape, including
+factories, manufacturing sites, and architectural
+heritage.
+
+</p>
+
+
+
+
+<div class="tech-tags">
+
+
+<span>ArcGIS StoryMaps</span>
+
+<span>GIS Analysis</span>
+
+<span>Historical Mapping</span>
+
+<span>Web GIS</span>
+
+
+</div>
+
+
+
+
+
+<div class="project-buttons">
+
+
+<a href="#" class="button primary">
+View Project →
+</a>
+
+
+
+</div>
+
+
+
+</div>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+<!-- PROJECT 4 -->
+
+
+<article class="project-large-card">
+
+
+
+<div class="project-large-image">
+
+<img src="images/port.jpg"
+alt="Port Corpus Christi Digital Twin">
+
+</div>
+
+
+
+
+<div class="project-large-content">
+
+
+
+<div class="project-category">
+
+INFRASTRUCTURE • INDUSTRIAL DIGITAL TWIN
+
+</div>
+
+
+
+<h2>
+Port Corpus Christi Digital Twin
+</h2>
+
+
+
+<p>
+
+A large-scale digital twin initiative focused on
+visualizing industrial infrastructure and spatial
+assets through interactive 3D environments.
+
+</p>
+
+
+
+
+<div class="tech-tags">
+
+
+<span>3D GIS</span>
+
+<span>Digital Twin</span>
+
+<span>Enterprise GIS</span>
+
+
+</div>
+
+
+
+
+<div class="project-buttons">
+
+
+<a href="#" class="button primary">
+View Project →
+</a>
+
+
+</div>
+
+
+
+</div>
+
+
+</article>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ================= FOOTER ================= -->
+
+
+<footer class="footer">
+
+
+<p>
+© 2026 Pavel Belsky
+</p>
+
+
+<p>
+Digital Twins • GIS • 3D Visualization
+</p>
+
+
+</footer>
+
+
 
 </body>
+
 </html>
