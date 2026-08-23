@@ -195,13 +195,13 @@
   <div class="model-sticky">
 
     <img
-      src="render_1_a.jpg"
+      src="images/render_1_a.jpg"
       alt="3D model wireframe"
       class="model-image wireframe"
     >
 
     <img
-      src="render_1_b.jpg"
+      src="images/render_1_b.jpg"
       alt="Fully rendered 3D model"
       class="model-image rendered"
     >
