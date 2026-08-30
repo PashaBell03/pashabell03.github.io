@@ -1,4 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Patrick+Hand&display=swap');
+/* PROJECTS DROPDOWN */
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-projects {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-projects span {
+  font-size: 12px;
+  transition: transform .2s ease;
+}
+
+.nav-dropdown:hover .nav-projects span {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: -18px;
+  min-width: 230px;
+  padding: 10px 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 25px rgba(0,0,0,.06);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px);
+  transition:
+    opacity .2s ease,
+    transform .2s ease,
+    visibility .2s ease;
+}
+
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 9px 18px;
+  font-size: .72rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background: var(--paper2);
+}
+
+.dropdown-menu a:after {
+  display: none;
+}
+
+
 
 :root{
   --paper:#f7f6f1;
