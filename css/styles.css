@@ -212,7 +212,7 @@ img {
 }
 
 /* ==========================================================================
-   HOME PAGE (WITH AUTOMATED IMAGE CROSSFADE)
+   HOME PAGE (SLOW CINEMATIC DISSOLVE)
    ========================================================================== */
 .hero {
   padding: 60px 0 35px;
@@ -280,33 +280,68 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .img-a {
   z-index: 1;
-  animation: crossfadeA 8s ease-in-out infinite;
+  animation: slowFadeA 16s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .img-b {
   z-index: 2;
-  animation: crossfadeB 8s ease-in-out infinite;
+  animation: slowFadeB 16s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* Pause keyframe transition when hovering over the stage */
+/* Hover to freeze frame */
 .hero-stage:hover .render-img {
   animation-play-state: paused;
 }
 
-@keyframes crossfadeA {
-  0%, 45% { opacity: 1; }
-  55%, 95% { opacity: 0; }
-  100% { opacity: 1; }
+@keyframes slowFadeA {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  38% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  88% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-@keyframes crossfadeB {
-  0%, 45% { opacity: 0; }
-  55%, 95% { opacity: 1; }
-  100% { opacity: 0; }
+@keyframes slowFadeB {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  38% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  88% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
 }
 
 .hero-under {
