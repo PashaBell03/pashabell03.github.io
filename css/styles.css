@@ -50,7 +50,9 @@ img {
   margin: auto;
 }
 
-/* NAVIGATION & HEADER */
+/* ==========================================================================
+   HEADER & NAVIGATION
+   ========================================================================== */
 .site-header {
   padding: 25px 0;
   position: relative;
@@ -181,7 +183,9 @@ img {
   transform: translateY(-1px);
 }
 
-/* TYPOGRAPHY & LAYOUT UTILITIES */
+/* ==========================================================================
+   TYPOGRAPHY & GENERAL LAYOUT
+   ========================================================================== */
 .eyebrow {
   font: 400 0.66rem "DM Mono", monospace;
   text-transform: uppercase;
@@ -207,7 +211,9 @@ img {
   font-weight: 600;
 }
 
-/* HOME HERO */
+/* ==========================================================================
+   HOME PAGE
+   ========================================================================== */
 .hero {
   padding: 60px 0 35px;
 }
@@ -302,7 +308,6 @@ img {
   text-align: right;
 }
 
-/* SECTIONS */
 .intro {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -460,7 +465,9 @@ img {
   color: var(--muted);
 }
 
-/* PROJECTS PAGE */
+/* ==========================================================================
+   PROJECTS PAGE (WITH HOVER & SCROLL-REVEAL STYLES)
+   ========================================================================== */
 .page-intro {
   padding: 60px 0 80px;
 }
@@ -530,12 +537,19 @@ img {
   height: 100%;
   object-fit: cover;
   filter: grayscale(1);
-  transition: filter 0.55s ease, transform 0.55s ease;
+  transition: filter 0.6s ease, transform 0.6s ease;
 }
 
+/* Desktop Hover Interaction */
 .project-item:hover .project-image img {
   filter: grayscale(0);
   transform: scale(1.035);
+}
+
+/* Mobile Scroll-Based Reveal State */
+.project-image img.in-view {
+  filter: grayscale(0);
+  transform: scale(1.02);
 }
 
 .project-info h3 {
@@ -569,7 +583,9 @@ img {
   transform: translateX(6px);
 }
 
-/* ABOUT PAGE */
+/* ==========================================================================
+   ABOUT PAGE
+   ========================================================================== */
 .about-hero {
   padding: 60px 0 90px;
 }
@@ -705,7 +721,9 @@ img {
   color: #66655f;
 }
 
-/* MEDIA QUERIES (TABLETS & MOBILE) */
+/* ==========================================================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
 @media (max-width: 900px) {
   .container {
     width: min(calc(100% - 40px), var(--max));
@@ -727,7 +745,7 @@ img {
     padding: 80px 0;
   }
 
-  /* Projects List Mobile View */
+  /* Projects Grid Adjustment for Mobile Viewports */
   .project-item {
     grid-template-columns: 35px 1fr 20px;
     gap: 15px;
