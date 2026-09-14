@@ -212,7 +212,7 @@ img {
 }
 
 /* ==========================================================================
-   HOME PAGE (SLOW DISSOLVE & ZOOM EFFECT)
+   HOME PAGE
    ========================================================================== */
 .hero {
   padding: 60px 0 35px;
@@ -285,49 +285,19 @@ img {
 }
 
 @keyframes slowFadeZoomA {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  25% {
-    opacity: 1;
-    transform: scale(1.035);
-  }
-  50% {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-  75% {
-    opacity: 0;
-    transform: scale(1.025);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+  0% { opacity: 1; transform: scale(1); }
+  25% { opacity: 1; transform: scale(1.035); }
+  50% { opacity: 0; transform: scale(1.05); }
+  75% { opacity: 0; transform: scale(1.025); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 @keyframes slowFadeZoomB {
-  0% {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-  25% {
-    opacity: 0;
-    transform: scale(1.025);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  75% {
-    opacity: 1;
-    transform: scale(1.035);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.05);
-  }
+  0% { opacity: 0; transform: scale(1.05); }
+  25% { opacity: 0; transform: scale(1.025); }
+  50% { opacity: 1; transform: scale(1); }
+  75% { opacity: 1; transform: scale(1.035); }
+  100% { opacity: 0; transform: scale(1.05); }
 }
 
 .hero-under {
@@ -577,13 +547,11 @@ img {
   transition: filter 0.6s ease, transform 0.6s ease;
 }
 
-/* Desktop Hover */
 .project-item:hover .project-image img {
   filter: grayscale(0);
   transform: scale(1.035);
 }
 
-/* Mobile Scroll-Based Reveal State */
 .project-image img.in-view {
   filter: grayscale(0);
   transform: scale(1.02);
@@ -684,8 +652,7 @@ img {
 }
 
 .capabilities,
-.toolbox,
-.experience {
+.toolbox {
   padding-bottom: 110px;
 }
 
@@ -748,22 +715,6 @@ img {
   margin: 0 0 22px;
   color: #55544f;
   line-height: 1.8;
-}
-
-.experience-list {
-  border-top: 1px solid var(--ink);
-}
-
-.experience-row {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 40px;
-  padding: 25px 0;
-  border-bottom: 1px solid var(--line);
-}
-
-.experience-row span {
-  color: #66655f;
 }
 
 /* ==========================================================================
@@ -907,8 +858,7 @@ img {
 
   .about-grid,
   .capabilities,
-  .toolbox,
-  .experience {
+  .toolbox {
     padding-bottom: 60px;
   }
 
@@ -923,11 +873,6 @@ img {
 
   .capability:nth-child(even) {
     padding-left: 0;
-  }
-
-  .experience-row {
-    grid-template-columns: 1fr;
-    gap: 8px;
   }
 
   .footer-grid {
