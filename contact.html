@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact — 3DGeoVis / Pavel Belsky">
+  <title>Contact — 3DGeoVis</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
 
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="index.html">3DGeoVis <small>/ PAVEL BELSKY</small></a>
+      <nav class="nav-links">
+        <div class="nav-dropdown">
+          <a href="projects.html" class="nav-projects">Projects <span>⌄</span></a>
+          <div class="dropdown-menu">
+            <a href="projects.html#digital-twins">Digital Twins</a>
+            <a href="projects.html#space-management">Smart Space Management</a>
+            <a href="projects.html#historic-preservation">Historical Preservation</a>
+          </div>
+        </div>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="page-intro" style="margin-bottom: 4rem;">
+      <div class="eyebrow">Get In Touch</div>
+      <h1 class="display-tight">Let's talk about<br>a place.</h1>
+    </section>
+
+    <section class="about-grid" style="padding-bottom: 6rem;">
+      <div class="contact-details">
+        <p class="lead" style="font-size: 1.25rem; line-height: 1.5; color: #55544f; margin-bottom: 2.5rem;">
+          Whether you are looking to build a digital twin, set up spatial asset management, or collaborate on a historical preservation project, feel free to reach out.
+        </p>
+
+        <div class="tool-group" style="border: none; padding: 0; margin-bottom: 2rem;">
+          <h3>Direct Email</h3>
+          <p><a href="mailto:contact@example.com" style="font-size: 1.2rem; font-weight: 500; text-decoration: underline;">contact@example.com</a></p>
+        </div>
+
+        <div class="tool-group" style="border: none; padding: 0; margin-bottom: 2rem;">
+          <h3>Location</h3>
+          <p>Greater New York Area & Regional Projects</p>
+        </div>
+
+        <div class="tool-group" style="border: none; padding: 0;">
+          <h3>Social / Networks</h3>
+          <p style="display: flex; gap: 15px; margin-top: 5px;">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">LinkedIn ↗</a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">GitHub ↗</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-form-container">
+        <form action="#" method="POST" class="contact-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label for="name" class="eyebrow">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name" style="background: var(--paper2); border: 1px solid var(--line); padding: 12px 16px; font-family: inherit; font-size: 1rem; color: var(--ink);">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label for="email" class="eyebrow">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your.email@example.com" style="background: var(--paper2); border: 1px solid var(--line); padding: 12px 16px; font-family: inherit; font-size: 1rem; color: var(--ink);">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label for="subject" class="eyebrow">Subject / Area of Interest</label>
+            <input type="text" id="subject" name="subject" placeholder="Digital Twins, Smart Space, Heritage..." style="background: var(--paper2); border: 1px solid var(--line); padding: 12px 16px; font-family: inherit; font-size: 1rem; color: var(--ink);">
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+            <label for="message" class="eyebrow">Message</label>
+            <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project or inquiry..." style="background: var(--paper2); border: 1px solid var(--line); padding: 12px 16px; font-family: inherit; font-size: 1rem; color: var(--ink); resize: vertical;"></textarea>
+          </div>
+
+          <button type="submit" class="contact-button" style="align-self: flex-start; cursor: pointer; background: transparent; margin-top: 0.5rem;">
+            Send Message ↗
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container footer-grid">
+      <div>
+        <h2 class="footer-big">Get in touch.</h2>
+        <a class="contact-button" href="mailto:contact@example.com">Get in touch ↗</a>
+      </div>
+      <div class="footer-small">© 2026 3DGeoVis / Pavel Belsky</div>
+    </div>
+  </footer>
+
+</body>
+</html>
