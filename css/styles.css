@@ -639,8 +639,13 @@ img {
   padding-bottom: 110px;
 }
 
+.portrait-wrapper {
+  position: sticky;
+  top: 40px;
+}
+
 .portrait-placeholder {
-  aspect-ratio: 4/5;
+  aspect-ratio: auto;
   background: #e9e8e2;
   border: 1px solid var(--line);
   overflow: hidden;
@@ -648,8 +653,24 @@ img {
 
 .portrait-placeholder img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  display: block;
   object-fit: cover;
+  filter: grayscale(1);
+  transition: filter 0.5s ease;
+}
+
+.portrait-placeholder:hover img {
+  filter: grayscale(0);
+}
+
+.portrait-caption {
+  display: block;
+  margin-top: 10px;
+  font: 400 0.62rem "DM Mono", monospace;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .story {
@@ -775,6 +796,10 @@ img {
   .about-grid {
     grid-template-columns: 1fr;
     gap: 45px;
+  }
+
+  .portrait-wrapper {
+    position: static;
   }
 
   .intro,
