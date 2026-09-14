@@ -520,7 +520,7 @@ img {
 
 .project-item {
   display: grid;
-  grid-template-columns: 70px minmax(260px, 0.72fr) minmax(300px, 1fr) 25px;
+  grid-template-columns: 70px minmax(260px, 0.72fr) minmax(300px, 1fr) 35px;
   gap: 25px;
   align-items: center;
   padding: 28px 0;
@@ -532,14 +532,16 @@ img {
   color: var(--muted);
 }
 
-.project-image {
+a.project-image {
+  display: block;
   position: relative;
   aspect-ratio: 1.55;
   background: #e5e4de;
   overflow: hidden;
+  text-decoration: none;
 }
 
-.project-image img {
+a.project-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -547,12 +549,12 @@ img {
   transition: filter 0.6s ease, transform 0.6s ease;
 }
 
-.project-item:hover .project-image img {
+.project-item:hover a.project-image img {
   filter: grayscale(0);
   transform: scale(1.035);
 }
 
-.project-image img.in-view {
+a.project-image img.in-view {
   filter: grayscale(0);
   transform: scale(1.02);
 }
@@ -563,6 +565,17 @@ img {
   line-height: 1.05;
   letter-spacing: -0.055em;
   font-weight: 500;
+}
+
+.project-info h3 a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.project-info h3 a:hover {
+  color: #000000;
+  text-decoration: underline;
 }
 
 .project-client {
@@ -579,13 +592,19 @@ img {
   font-size: 0.88rem;
 }
 
-.project-arrow {
-  font-size: 1.2rem;
-  transition: transform 0.25s ease;
+a.project-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 1.3rem;
+  transition: transform 0.25s ease, color 0.25s ease;
 }
 
-.project-item:hover .project-arrow {
+.project-item:hover a.project-arrow {
   transform: translateX(6px);
+  color: var(--muted);
 }
 
 /* ==========================================================================
@@ -751,7 +770,7 @@ img {
     padding: 24px 0;
   }
 
-  .project-image {
+  a.project-image {
     grid-column: 1 / span 2;
     grid-row: 2;
     aspect-ratio: 1.6;
@@ -773,7 +792,7 @@ img {
     grid-row: 1;
   }
 
-  .project-arrow {
+  a.project-arrow {
     grid-column: 3;
     grid-row: 1;
     text-align: right;
