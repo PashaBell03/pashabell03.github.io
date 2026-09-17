@@ -128,16 +128,6 @@ img {
   cursor: pointer;
 }
 
-.nav-projects span {
-  font-size: 12px;
-  transition: transform 0.2s ease;
-}
-
-.nav-dropdown:hover .nav-projects span,
-.nav-dropdown:focus-within .nav-projects span {
-  transform: rotate(180deg);
-}
-
 .dropdown-menu {
   position: absolute;
   top: calc(100% + 12px);
@@ -261,33 +251,13 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  will-change: transform, opacity;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  will-change: opacity;
 }
 
-.img-a {
-  z-index: 1;
-  animation: slowFadeZoomA 16s ease-in-out infinite;
-}
-
-.img-b {
-  z-index: 2;
-  animation: slowFadeZoomB 16s ease-in-out infinite;
-}
-
-@keyframes slowFadeZoomA {
-  0% { opacity: 1; transform: scale(1); }
-  25% { opacity: 1; transform: scale(1.035); }
-  50% { opacity: 0; transform: scale(1.05); }
-  75% { opacity: 0; transform: scale(1.025); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes slowFadeZoomB {
-  0% { opacity: 0; transform: scale(1.05); }
-  25% { opacity: 0; transform: scale(1.025); }
-  50% { opacity: 1; transform: scale(1); }
-  75% { opacity: 1; transform: scale(1.035); }
-  100% { opacity: 0; transform: scale(1.05); }
+.render-img.active {
+  opacity: 1;
 }
 
 .hero-under {
@@ -549,7 +519,7 @@ a.project-arrow {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 0.72fr 1.28fr;
+  grid-template-columns: 1.28fr 0.72fr;
   gap: 70px;
   padding-bottom: 110px;
 }
@@ -589,13 +559,6 @@ a.project-arrow {
 .story p {
   color: #55544f;
   margin: 0 0 25px;
-}
-
-.work-note {
-  font: 1.45rem/1.2 "Patrick Hand", cursive;
-  transform: rotate(-1deg);
-  max-width: 700px;
-  margin-top: 35px;
 }
 
 .capabilities,
