@@ -173,56 +173,37 @@ img {
   color: var(--muted);
 }
 
-.hand {
-  font-family: "Patrick Hand", cursive;
-}
-
-.display {
-  font-size: clamp(2.8rem, 7.5vw, 8.4rem);
-  line-height: 0.9;
-  letter-spacing: -0.075em;
-  font-weight: 600;
-}
-
-.display-tight {
-  font-size: clamp(2.5rem, 6vw, 6.7rem);
-  line-height: 0.92;
-  letter-spacing: -0.075em;
-  font-weight: 600;
-}
-
 /* ==========================================================================
-   ABOUT PAGE
+   ABOUT PAGE (STABLE LAYOUT FIX)
    ========================================================================== */
 .about-hero {
-  padding: 20px 0 0;
+  padding: 40px 0 0;
   position: relative;
   z-index: 1;
-  overflow: hidden;
-  height: 180px;
 }
 
 .about-hero .eyebrow {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .about-hero h1 {
   margin: 0;
-  font-size: clamp(3.5rem, 8vw, 7.5rem);
-  line-height: 0.88;
-  letter-spacing: -0.06em;
+  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
   font-weight: 700;
-  transform: translateY(-45%);
+  color: var(--ink);
+  max-width: 900px;
 }
 
 .about-grid {
   display: grid !important;
-  grid-template-columns: 1.15fr 0.85fr !important;
-  gap: 40px;
+  grid-template-columns: 1fr 480px !important;
+  gap: 60px;
   align-items: start;
   padding-bottom: 100px;
   position: relative;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 .story {
@@ -232,37 +213,35 @@ img {
 }
 
 .story .lead {
-  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
-  line-height: 1.25;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  line-height: 1.3;
+  letter-spacing: -0.02em;
   color: var(--ink);
   font-weight: 500;
-  margin: 0 0 30px;
+  margin: 0 0 28px;
 }
 
 .story p {
   color: #65645e;
-  font-size: 0.9rem;
-  line-height: 1.6;
+  font-size: 0.92rem;
+  line-height: 1.65;
   margin: 0 0 20px;
 }
 
 .portrait-container {
   grid-column: 2;
-  position: absolute;
-  top: -110px;
-  right: 0;
+  position: relative;
+  top: -80px;
   width: 100%;
-  max-width: 500px;
   z-index: 3;
 }
 
 .portrait-img {
   width: 100%;
-  height: 520px;
-  object-fit: cover;
-  object-position: top center;
+  max-width: 480px;
+  height: auto;
   display: block;
+  object-fit: contain;
   filter: grayscale(1);
   transition: filter 0.5s ease;
 }
@@ -353,7 +332,7 @@ img {
 }
 
 /* ==========================================================================
-   REVERSED SLIM FOOTER STRIP
+   FOOTER
    ========================================================================== */
 .site-footer-strip {
   background-color: #000000;
@@ -407,19 +386,14 @@ img {
     gap: 20px;
   }
 
-  .about-hero {
-    height: auto;
-    overflow: visible;
-  }
-
   .about-hero h1 {
-    transform: none;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
   }
 
   .about-grid {
     grid-template-columns: 1fr !important;
-    margin-top: 20px;
+    margin-top: 30px;
+    gap: 40px;
   }
 
   .story {
@@ -428,7 +402,6 @@ img {
 
   .portrait-container {
     grid-column: 1;
-    position: relative;
     top: 0;
     max-width: 360px;
     margin: 0 auto;
@@ -473,7 +446,7 @@ img {
   }
 
   .about-hero {
-    padding: 40px 0 0;
+    padding: 30px 0 0;
   }
 
   .capability-grid {
