@@ -509,59 +509,67 @@ a.project-arrow {
    ABOUT PAGE
    ========================================================================== */
 .about-hero {
-  padding: 60px 0 90px;
+  padding: 40px 0 0;
+  position: relative;
+  z-index: 1;
 }
 
 .about-hero h1 {
   margin: 18px 0 0;
-  max-width: 1100px;
+  max-width: 100%;
 }
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 70px;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
   align-items: start;
   padding-bottom: 110px;
+  position: relative;
+  margin-top: -30px;
+}
+
+.story {
+  max-width: 620px;
+  z-index: 2;
+}
+
+.story .lead {
+  font-size: clamp(1.5rem, 2.3vw, 2.4rem);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  font-weight: 500;
+  margin: 0 0 35px;
+}
+
+.story p {
+  color: #605f59;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0 0 22px;
 }
 
 .portrait-container {
-  position: sticky;
-  top: 40px;
-  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  z-index: 2;
 }
 
 .portrait-img {
   width: 100%;
-  max-width: 340px;
+  max-width: 460px;
   height: auto;
   display: block;
-  background: transparent;
-  border: none;
-  outline: none;
-  box-shadow: none;
+  object-fit: contain;
   filter: grayscale(1);
   transition: filter 0.5s ease;
 }
 
 .portrait-img:hover {
   filter: grayscale(0);
-}
-
-.story {
-  max-width: 700px;
-}
-
-.story .lead {
-  font-size: clamp(1.3rem, 2vw, 2.25rem);
-  line-height: 1.22;
-  letter-spacing: -0.035em;
-  margin: 0 0 35px;
-}
-
-.story p {
-  color: #55544f;
-  margin: 0 0 25px;
 }
 
 .capabilities,
@@ -691,14 +699,23 @@ a.project-arrow {
   }
 
   .intro,
-  .home-about,
-  .about-grid {
+  .home-about {
     grid-template-columns: 1fr;
     gap: 45px;
   }
 
+  .about-grid {
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+    gap: 40px;
+  }
+
   .portrait-container {
-    position: static;
+    justify-content: center;
+  }
+
+  .portrait-img {
+    max-width: 320px;
   }
 
   .intro,
@@ -814,7 +831,7 @@ a.project-arrow {
   }
 
   .about-hero {
-    padding: 40px 0 60px;
+    padding: 40px 0 0;
   }
 
   .about-grid,
