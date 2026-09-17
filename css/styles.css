@@ -163,9 +163,6 @@ img {
   background: var(--paper2);
 }
 
-/* ==========================================================================
-   TYPOGRAPHY & GENERAL LAYOUT
-   ========================================================================== */
 .eyebrow {
   font: 400 0.66rem "DM Mono", monospace;
   text-transform: uppercase;
@@ -174,19 +171,54 @@ img {
 }
 
 /* ==========================================================================
-   ABOUT PAGE (STABLE LAYOUT FIX)
+   PAGE: INDEX / HOME
    ========================================================================== */
-.about-hero {
+.page-index .hero {
+  padding: 60px 0 80px;
+}
+
+.page-index .hero h1 {
+  margin: 15px 0 25px;
+  font-size: clamp(2.8rem, 6vw, 5.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  max-width: 1000px;
+}
+
+.page-index .hero p.lead {
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  color: #55544f;
+  max-width: 720px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.page-index .featured-projects {
+  padding-bottom: 100px;
+}
+
+.page-index .featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 40px;
+  margin-top: 30px;
+}
+
+/* ==========================================================================
+   PAGE: ABOUT (SCOPED FIX)
+   ========================================================================== */
+.page-about .about-hero {
   padding: 40px 0 0;
   position: relative;
   z-index: 1;
 }
 
-.about-hero .eyebrow {
+.page-about .about-hero .eyebrow {
   margin-bottom: 12px;
 }
 
-.about-hero h1 {
+.page-about .about-hero h1 {
   margin: 0;
   font-size: clamp(2.8rem, 5.5vw, 5.5rem);
   line-height: 1.05;
@@ -196,9 +228,9 @@ img {
   max-width: 900px;
 }
 
-.about-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 480px !important;
+.page-about .about-grid {
+  display: grid;
+  grid-template-columns: 1fr 480px;
   gap: 60px;
   align-items: start;
   padding-bottom: 100px;
@@ -206,13 +238,13 @@ img {
   margin-top: 50px;
 }
 
-.story {
+.page-about .story {
   grid-column: 1;
   max-width: 580px;
   z-index: 2;
 }
 
-.story .lead {
+.page-about .story .lead {
   font-size: clamp(1.3rem, 2vw, 2rem);
   line-height: 1.3;
   letter-spacing: -0.02em;
@@ -221,14 +253,14 @@ img {
   margin: 0 0 28px;
 }
 
-.story p {
+.page-about .story p {
   color: #65645e;
   font-size: 0.92rem;
   line-height: 1.65;
   margin: 0 0 20px;
 }
 
-.portrait-container {
+.page-about .portrait-container {
   grid-column: 2;
   position: relative;
   top: -80px;
@@ -236,7 +268,7 @@ img {
   z-index: 3;
 }
 
-.portrait-img {
+.page-about .portrait-img {
   width: 100%;
   max-width: 480px;
   height: auto;
@@ -246,7 +278,7 @@ img {
   transition: filter 0.5s ease;
 }
 
-.portrait-img:hover {
+.page-about .portrait-img:hover {
   filter: grayscale(0);
 }
 
@@ -332,7 +364,85 @@ img {
 }
 
 /* ==========================================================================
-   FOOTER
+   PAGE: PROJECTS (SCOPED FIX)
+   ========================================================================== */
+.page-projects .projects-hero {
+  padding: 50px 0 30px;
+}
+
+.page-projects .projects-hero h1 {
+  margin: 12px 0 0;
+  font-size: clamp(2.5rem, 5vw, 4.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+.page-projects .project-section {
+  padding: 40px 0 80px;
+  border-top: 1px solid var(--line);
+}
+
+.page-projects .projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  transition: transform 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+.project-card .card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--paper2);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  margin-bottom: 16px;
+}
+
+.project-card .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 0.4s ease;
+}
+
+.project-card:hover .card-image img {
+  scale: 1.03;
+}
+
+.project-card h3 {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.project-card p {
+  margin: 0 0 12px;
+  font-size: 0.88rem;
+  color: #65645e;
+}
+
+.project-card .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font: 400 0.65rem "DM Mono", monospace;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   FOOTER STRIP
    ========================================================================== */
 .site-footer-strip {
   background-color: #000000;
@@ -386,35 +496,29 @@ img {
     gap: 20px;
   }
 
-  .about-hero h1 {
+  .page-about .about-hero h1 {
     font-size: clamp(2.2rem, 6vw, 3.8rem);
   }
 
-  .about-grid {
-    grid-template-columns: 1fr !important;
+  .page-about .about-grid {
+    grid-template-columns: 1fr;
     margin-top: 30px;
     gap: 40px;
   }
 
-  .story {
+  .page-about .story {
     grid-column: 1;
   }
 
-  .portrait-container {
+  .page-about .portrait-container {
     grid-column: 1;
     top: 0;
     max-width: 360px;
     margin: 0 auto;
   }
 
-  .portrait-img {
+  .page-about .portrait-img {
     height: auto;
-  }
-
-  .about-grid,
-  .capabilities,
-  .toolbox {
-    padding-bottom: 60px;
   }
 
   .toolbox-grid {
@@ -445,10 +549,6 @@ img {
     font-size: 0.75rem;
   }
 
-  .about-hero {
-    padding: 30px 0 0;
-  }
-
   .capability-grid {
     grid-template-columns: 1fr;
   }
@@ -466,18 +566,5 @@ img {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *:before,
-  *:after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
   }
 }
