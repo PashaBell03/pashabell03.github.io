@@ -519,18 +519,21 @@ a.project-arrow {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1.28fr 0.72fr;
+  grid-template-columns: 1fr 340px;
   gap: 70px;
+  align-items: start;
   padding-bottom: 110px;
 }
 
 .portrait-container {
   position: sticky;
   top: 40px;
+  width: 100%;
 }
 
 .portrait-img {
   width: 100%;
+  max-width: 340px;
   height: auto;
   display: block;
   background: transparent;
