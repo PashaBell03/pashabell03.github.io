@@ -5,23 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="About Pavel Belsky — Digital Twin & 3D Visualization Specialist.">
   <title>About — 3DGeoVis</title>
-  <link rel="stylesheet" href="css/styles.css?v=1.4">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="page-about">
-
+<body>
 <header class="site-header">
   <div class="container nav">
     <a class="logo" href="index.html">3DGeoVis <small>/ PAVEL BELSKY</small></a>
     <nav class="nav-links">
-      <a href="about.html" aria-current="page">About</a>
       <div class="nav-dropdown">
-        <a href="projects.html" class="nav-projects">Projects</a>
+        <a href="projects.html" class="nav-projects" aria-haspopup="true">Projects <span>⌄</span></a>
         <div class="dropdown-menu">
           <a href="projects.html#digital-twins">Digital Twins</a>
           <a href="projects.html#space-management">Smart Space Management</a>
           <a href="projects.html#historic-preservation">Historical Preservation</a>
         </div>
       </div>
+      <a href="about.html" aria-current="page">About</a>
     </nav>
   </div>
 </header>
@@ -29,20 +28,20 @@
 <main>
   <section class="container about-hero">
     <div class="eyebrow">About / How I work</div>
-    <h1>I like complicated places.<br>Especially when they can be made simple.</h1>
+    <h1 class="display-tight">I like complicated places.<br>Especially when they can be made simple.</h1>
   </section>
 
   <section class="container about-grid">
+    <div class="portrait-container">
+      <img src="images/pavel-belsky-portrait.png" alt="Pavel Belsky" class="portrait-img" loading="lazy">
+    </div>
     <div class="story">
       <p class="lead">I'm a Digital Twin &amp; 3D Visualization Specialist with 20+ years of experience across GIS, 3D modeling, and the AEC world.</p>
       <p>I've always been drawn to maps and architecture — ways of making sense of the world around us. Over the years, that interest grew into a career combining manual mapping, cartography, 2D/3D spatial analysis, and 3D modeling.</p>
       <p>Today, my work focuses on turning real environments into useful digital representations. I build 3D Digital Twins and spatial visualization tools for urban environments, facilities, real estate, and historic places.</p>
       <p>What interests me most is not simply making something look impressive. It's figuring out which details matter, representing them accurately, and delivering the result in a way people can actually use.</p>
       <p>I'm fast, detail-oriented, and collaborative. I like bringing the client into the thinking process early, questioning assumptions, and finding solutions that are often simpler than the first idea.</p>
-    </div>
-    
-    <div class="portrait-container">
-      <img src="images/pavel-belsky-portrait.png" alt="Pavel Belsky" class="portrait-img" loading="lazy">
+      <p class="work-note">“I don't believe every problem needs a bigger model. Sometimes it just needs a better one.”</p>
     </div>
   </section>
 
@@ -86,13 +85,11 @@
 <footer class="site-footer-strip">
   <div class="container footer-flex">
     <div class="footer-links">
-      <span class="email-text">3DGeoVis@gmail.com</span>
-      <span class="divider">|</span>
+      <span class="email-text">3DGeoVis@gmail.com</span>      <span class="divider">|</span>
       <a href="https://www.linkedin.com/in/pavelbelsky/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
     </div>
     <div class="copyright">© 2026 3DGeoVis / Pavel Belsky</div>
   </div>
 </footer>
-
 </body>
 </html>
