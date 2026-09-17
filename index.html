@@ -13,15 +13,15 @@
   <div class="container nav">
     <a class="logo" href="index.html">3DGeoVis <small>/ PAVEL BELSKY</small></a>
     <nav class="nav-links">
+      <a href="about.html">About</a>
       <div class="nav-dropdown">
-        <a href="projects.html" class="nav-projects" aria-haspopup="true">Projects <span>⌄</span></a>
+        <a href="projects.html" class="nav-projects" aria-haspopup="true">Projects</a>
         <div class="dropdown-menu">
           <a href="projects.html#digital-twins">Digital Twins</a>
           <a href="projects.html#space-management">Smart Space Management</a>
           <a href="projects.html#historic-preservation">Historical Preservation</a>
         </div>
       </div>
-      <a href="about.html">About</a>
     </nav>
   </div>
 </header>
@@ -35,9 +35,8 @@
     </div>
 
     <div class="hero-stage">
-      <div class="hero-stage-images">
-        <img src="images/render_1_a.jpg" alt="Render A" class="render-img img-a">
-        <img src="images/render_1_b.jpg" alt="Render B" class="render-img img-b">
+      <div class="hero-stage-images" id="hero-slider">
+        <!-- Dynamic images rendered via JS -->
       </div>
     </div>
   </section>
@@ -110,6 +109,38 @@
     <div class="copyright">© 2026 3DGeoVis / Pavel Belsky</div>
   </div>
 </footer>
+
+<script>
+  // ADD NEW IMAGE FILENAMES HERE TO INCLUDE THEM IN THE HERO ROTATION:
+  const imageFiles = [
+    'render_1_a.jpg',
+    'render_1_b.jpg'
+    // 'render_1_c.jpg',
+    // 'render_1_d.jpg'
+  ];
+
+  const sliderContainer = document.getElementById('hero-slider');
+
+  if (sliderContainer && imageFiles.length > 0) {
+    imageFiles.forEach((file, index) => {
+      const img = document.createElement('img');
+      img.src = `images/${file}`;
+      img.alt = `Render ${index + 1}`;
+      img.className = `render-img ${index === 0 ? 'active' : ''}`;
+      sliderContainer.appendChild(img);
+    });
+
+    if (imageFiles.length > 1) {
+      let currentIndex = 0;
+      const slides = sliderContainer.querySelectorAll('.render-img');
+      setInterval(() => {
+        slides[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % slides.length;
+        slides[currentIndex].classList.add('active');
+      }, 4000); // Transitions every 4 seconds
+    }
+  }
+</script>
 
 </body>
 </html>
