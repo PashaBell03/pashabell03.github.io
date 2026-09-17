@@ -3,60 +3,100 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="3DGeoVis — Pavel Belsky. Digital Twin & 3D Visualization Specialist.">
-  <title>3DGeoVis — Pavel Belsky</title>
-  <link rel="stylesheet" href="css/styles.css?v=1.4">
+  <meta name="description" content="3DGeoVis — Digital Twin & 3D Visualization Specialist. Complex environments, made simple.">
+  <title>3DGeoVis — Complex environments, made simple.</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="page-index">
+<body>
 
 <header class="site-header">
   <div class="container nav">
     <a class="logo" href="index.html">3DGeoVis <small>/ PAVEL BELSKY</small></a>
     <nav class="nav-links">
-      <a href="about.html">About</a>
       <div class="nav-dropdown">
-        <a href="projects.html" class="nav-projects">Projects</a>
+        <a href="projects.html" class="nav-projects" aria-haspopup="true">Projects <span>⌄</span></a>
         <div class="dropdown-menu">
           <a href="projects.html#digital-twins">Digital Twins</a>
           <a href="projects.html#space-management">Smart Space Management</a>
           <a href="projects.html#historic-preservation">Historical Preservation</a>
         </div>
       </div>
+      <a href="about.html">About</a>
     </nav>
   </div>
 </header>
   
 <main>
-  <section class="container hero">
-    <div class="eyebrow">Spatial Analysis &amp; 3D Modeling</div>
-    <h1>Turning complex spatial environments into intuitive 3D Digital Twins.</h1>
-    <p class="lead">Specializing in GIS integration, urban 3D modeling, smart facility visualization, and historic preservation.</p>
+  <!-- HERO SECTION -->
+  <section class="hero container" style="margin-bottom: 5rem;">
+    <div class="hero-copy">
+      <h1 class="display">Complex environments,<br>made simple.</h1>
+      <p class="subline">Lightweight 3D environments, GIS workflows, and spatial modeling built for clarity and operational utility.</p>
+    </div>
+
+    <div class="hero-stage">
+      <div class="hero-stage-images">
+        <img src="images/render_1_a.jpg" alt="Render A" class="render-img img-a">
+        <img src="images/render_1_b.jpg" alt="Render B" class="render-img img-b">
+      </div>
+    </div>
   </section>
 
-  <section class="container featured-projects">
+  <!-- WORK CATEGORIES -->
+  <section class="container" style="margin-bottom: 5rem;">
     <div class="section-head">
-      <h2>Selected Work</h2>
-      <a href="projects.html" class="eyebrow">View All Projects ↗</a>
+      <h2>Selected Disciplines</h2>
     </div>
-    <div class="featured-grid">
-      <a href="projects.html#digital-twins" class="project-card">
-        <div class="card-image">
-          <img src="images/project-corpus-christi.jpg" alt="Port of Corpus Christi Digital Twin" loading="lazy">
+    <div class="category-links">
+      <a class="category-link" href="projects.html#digital-twins">
+        <span class="category-number">01</span>
+        <div>
+          <h3>Digital Twins</h3>
+          <p>Real-world infrastructure and urban spaces represented as clean, interactive environments.</p>
         </div>
-        <h3>Port of Corpus Christi Digital Twin</h3>
-        <p>City-wide 3D massing and facility management integration.</p>
-        <div class="tags"><span>ArcGIS Pro</span> · <span>3D GIS</span> · <span>Digital Twin</span></div>
+        <span class="category-arrow">↗</span>
       </a>
-
-      <a href="projects.html#historic-preservation" class="project-card">
-        <div class="card-image">
-          <img src="images/project-ellis-island.jpg" alt="Ellis Island Historic Reconstruction" loading="lazy">
+      <a class="category-link" href="projects.html#space-management">
+        <span class="category-number">02</span>
+        <div>
+          <h3>Smart Space Management</h3>
+          <p>Spatial tools for understanding facilities, building systems, and operational layout data.</p>
         </div>
-        <h3>Ellis Island Chronological Reconstruction</h3>
-        <p>Historic 3D timeline visualization of island expansions and structures.</p>
-
-        <div class="tags"><span>Historic Preservation</span> · <span>Blender</span> · <span>ArcGIS</span></div>
+        <span class="category-arrow">↗</span>
       </a>
+      <a class="category-link" href="projects.html#historic-preservation">
+        <span class="category-number">03</span>
+        <div>
+          <h3>Historical Preservation</h3>
+          <p>Reconstruction and spatial analysis of heritage architecture and historical land development.</p>
+        </div>
+        <span class="category-arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- BRIEF OVERVIEW -->
+  <section class="container home-about" style="margin-bottom: 5rem;">
+    <div>
+      <h2>Precision &amp;<br>Spatial Logic</h2>
+    </div>
+    <div class="home-about-copy">
+      <p>Over 20 years of experience turning complex physical spaces into usable digital assets across GIS, 3D modeling, and AEC environments.</p>
+      <a class="contact-button" href="about.html" style="margin-top: 1rem;">About the work ↗</a>
+    </div>
+  </section>
+
+  <!-- CLIENT STRIP -->
+  <section class="container client-strip" style="margin-bottom: 5rem;">
+    <div class="section-head">
+      <h2>Collaborators &amp; Partners</h2>
+    </div>
+    <div class="client-list">
+      <span>City of Kent</span>
+      <span>Port of Corpus Christi</span>
+      <span>Forensic Architecture</span>
+      <span>Behar Mapping</span>
+      <span>TAA</span>
     </div>
   </section>
 </main>
@@ -64,8 +104,7 @@
 <footer class="site-footer-strip">
   <div class="container footer-flex">
     <div class="footer-links">
-      <span class="email-text">3DGeoVis@gmail.com</span>
-      <span class="divider">|</span>
+      <span class="email-text">3DGeoVis@gmail.com</span>      <span class="divider">|</span>
       <a href="https://www.linkedin.com/in/pavelbelsky/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
     </div>
     <div class="copyright">© 2026 3DGeoVis / Pavel Belsky</div>
