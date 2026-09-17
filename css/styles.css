@@ -128,6 +128,16 @@ img {
   cursor: pointer;
 }
 
+.nav-projects span {
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.nav-dropdown:hover .nav-projects span,
+.nav-dropdown:focus-within .nav-projects span {
+  transform: rotate(180deg);
+}
+
 .dropdown-menu {
   position: absolute;
   top: calc(100% + 12px);
@@ -163,6 +173,9 @@ img {
   background: var(--paper2);
 }
 
+/* ==========================================================================
+   TYPOGRAPHY & GENERAL LAYOUT
+   ========================================================================== */
 .eyebrow {
   font: 400 0.66rem "DM Mono", monospace;
   text-transform: uppercase;
@@ -170,121 +183,150 @@ img {
   color: var(--muted);
 }
 
-/* ==========================================================================
-   PAGE: INDEX / HOME
-   ========================================================================== */
-.page-index .hero {
-  padding: 60px 0 80px;
+.hand {
+  font-family: "Patrick Hand", cursive;
 }
 
-.page-index .hero h1 {
-  margin: 15px 0 25px;
-  font-size: clamp(2.8rem, 6vw, 5.8rem);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  font-weight: 700;
-  max-width: 1000px;
+.display {
+  font-size: clamp(2.8rem, 7.5vw, 8.4rem);
+  line-height: 0.9;
+  letter-spacing: -0.075em;
+  font-weight: 600;
 }
 
-.page-index .hero p.lead {
-  font-size: clamp(1.2rem, 2vw, 1.8rem);
-  color: #55544f;
-  max-width: 720px;
-  margin: 0;
-  line-height: 1.4;
-}
-
-.page-index .featured-projects {
-  padding-bottom: 100px;
-}
-
-.page-index .featured-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 40px;
-  margin-top: 30px;
+.display-tight {
+  font-size: clamp(2.5rem, 6vw, 6.7rem);
+  line-height: 0.92;
+  letter-spacing: -0.075em;
+  font-weight: 600;
 }
 
 /* ==========================================================================
-   PAGE: ABOUT (SCOPED FIX)
+   HOME PAGE
    ========================================================================== */
-.page-about .about-hero {
-  padding: 40px 0 0;
-  position: relative;
-  z-index: 1;
+.hero {
+  padding: 60px 0 35px;
 }
 
-.page-about .about-hero .eyebrow {
-  margin-bottom: 12px;
+.hero-copy {
+  max-width: 980px;
+  margin-bottom: 45px;
 }
 
-.page-about .about-hero h1 {
+.hero-copy .eyebrow {
+  margin-bottom: 22px;
+}
+
+.hero-copy h1 {
   margin: 0;
-  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  font-weight: 700;
-  color: var(--ink);
-  max-width: 900px;
 }
 
-.page-about .about-grid {
-  display: grid;
-  grid-template-columns: 1fr 480px;
-  gap: 60px;
-  align-items: start;
-  padding-bottom: 100px;
+.hero-copy .subline {
+  max-width: 650px;
+  margin: 28px 0 0;
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  line-height: 1.45;
+  color: #50504b;
+}
+
+.hero-stage {
+  height: clamp(260px, 40vh, 440px);
   position: relative;
-  margin-top: 50px;
+  overflow: hidden;
+  background: #e9e8e2;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
 }
 
-.page-about .story {
-  grid-column: 1;
-  max-width: 580px;
-  z-index: 2;
-}
-
-.page-about .story .lead {
-  font-size: clamp(1.3rem, 2vw, 2rem);
-  line-height: 1.3;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  font-weight: 500;
-  margin: 0 0 28px;
-}
-
-.page-about .story p {
-  color: #65645e;
-  font-size: 0.92rem;
-  line-height: 1.65;
-  margin: 0 0 20px;
-}
-
-.page-about .portrait-container {
-  grid-column: 2;
-  position: relative;
-  top: -80px;
-  width: 100%;
+.stage-label {
+  position: absolute;
   z-index: 3;
+  left: 18px;
+  top: 15px;
+  font: 400 0.62rem "DM Mono", monospace;
+  color: var(--muted);
+  letter-spacing: 0.08em;
 }
 
-.page-about .portrait-img {
+.hero-stage-images {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: 480px;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  filter: grayscale(1);
-  transition: filter 0.5s ease;
+  height: 100%;
 }
 
-.page-about .portrait-img:hover {
-  filter: grayscale(0);
+.render-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform, opacity;
 }
 
-.capabilities,
-.toolbox {
-  padding-bottom: 110px;
+.img-a {
+  z-index: 1;
+  animation: slowFadeZoomA 16s ease-in-out infinite;
+}
+
+.img-b {
+  z-index: 2;
+  animation: slowFadeZoomB 16s ease-in-out infinite;
+}
+
+@keyframes slowFadeZoomA {
+  0% { opacity: 1; transform: scale(1); }
+  25% { opacity: 1; transform: scale(1.035); }
+  50% { opacity: 0; transform: scale(1.05); }
+  75% { opacity: 0; transform: scale(1.025); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slowFadeZoomB {
+  0% { opacity: 0; transform: scale(1.05); }
+  25% { opacity: 0; transform: scale(1.025); }
+  50% { opacity: 1; transform: scale(1); }
+  75% { opacity: 1; transform: scale(1.035); }
+  100% { opacity: 0; transform: scale(1.05); }
+}
+
+.hero-under {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 17px 0;
+  font: 400 0.66rem "DM Mono", monospace;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hero-under span:last-child {
+  text-align: right;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 80px;
+  padding: 120px 0;
+}
+
+.intro h2 {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.2vw, 5rem);
+  line-height: 0.96;
+  letter-spacing: -0.065em;
+}
+
+.intro-copy {
+  align-self: end;
+  max-width: 500px;
+  color: #55544f;
+}
+
+.intro-copy p {
+  margin: 0 0 25px;
 }
 
 .section-head {
@@ -300,6 +342,265 @@ img {
   font: 500 0.7rem "DM Mono", monospace;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+.category-links {
+  border-top: 1px solid var(--ink);
+}
+
+.category-link {
+  display: grid;
+  grid-template-columns: 75px 1fr auto;
+  align-items: center;
+  gap: 25px;
+  min-height: 132px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+.category-link:hover {
+  padding: 20px 18px;
+  background: var(--paper2);
+}
+
+.category-number {
+  font: 400 0.65rem "DM Mono", monospace;
+  color: var(--muted);
+}
+
+.category-link h3 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3.2vw, 3.7rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+  font-weight: 500;
+}
+
+.category-link p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.category-arrow {
+  font-size: 1.5rem;
+  transition: transform 0.25s ease;
+}
+
+.category-link:hover .category-arrow {
+  transform: translateX(7px);
+}
+
+.home-about {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 90px;
+  padding: 120px 0;
+}
+
+.home-about h2 {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.5vw, 5.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.07em;
+}
+
+.home-about-copy {
+  max-width: 650px;
+  color: #55544f;
+  font-size: 1.05rem;
+}
+
+.home-about-copy p {
+  margin: 0 0 25px;
+}
+
+.client-strip {
+  padding-bottom: 120px;
+}
+
+.client-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 25px;
+  margin-top: 22px;
+  color: #55544f;
+}
+
+.client-list span:after {
+  content: "·";
+  margin-left: 25px;
+  color: #aaa;
+}
+
+.client-list span:last-child:after {
+  display: none;
+}
+
+/* ==========================================================================
+   PROJECTS PAGE
+   ========================================================================== */
+.page-intro {
+  padding: 60px 0 40px;
+}
+
+.page-intro h1 {
+  margin: 0;
+}
+
+.project-category {
+  padding-bottom: 60px;
+}
+
+.project-list {
+  border-bottom: 1px solid var(--line);
+}
+
+.project-item {
+  display: grid;
+  grid-template-columns: 70px minmax(260px, 0.72fr) minmax(300px, 1fr) 35px;
+  gap: 25px;
+  align-items: center;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.project-index {
+  font: 400 0.65rem "DM Mono", monospace;
+  color: var(--muted);
+}
+
+a.project-image {
+  display: block;
+  position: relative;
+  aspect-ratio: 1.55;
+  background: #e5e4de;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+a.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition: filter 0.6s ease, transform 0.6s ease;
+}
+
+.project-item:hover a.project-image img {
+  filter: grayscale(0);
+  transform: scale(1.035);
+}
+
+a.project-image img.in-view {
+  filter: grayscale(0);
+  transform: scale(1.02);
+}
+
+.project-info h3 {
+  margin: 0 0 7px;
+  font-size: clamp(1.4rem, 2.2vw, 2.65rem);
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  font-weight: 500;
+}
+
+.project-client {
+  font: 400 0.65rem "DM Mono", monospace;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.project-summary {
+  margin: 12px 0 0;
+  max-width: 540px;
+  color: #595852;
+  font-size: 0.88rem;
+}
+
+a.project-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 1.3rem;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.project-item:hover a.project-arrow {
+  transform: translateX(6px);
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   ABOUT PAGE
+   ========================================================================== */
+.about-hero {
+  padding: 60px 0 90px;
+}
+
+.about-hero h1 {
+  margin: 18px 0 0;
+  max-width: 1100px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.72fr 1.28fr;
+  gap: 70px;
+  padding-bottom: 110px;
+}
+
+.portrait-container {
+  position: sticky;
+  top: 40px;
+}
+
+.portrait-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  filter: grayscale(1);
+  transition: filter 0.5s ease;
+}
+
+.portrait-img:hover {
+  filter: grayscale(0);
+}
+
+.story {
+  max-width: 700px;
+}
+
+.story .lead {
+  font-size: clamp(1.3rem, 2vw, 2.25rem);
+  line-height: 1.22;
+  letter-spacing: -0.035em;
+  margin: 0 0 35px;
+}
+
+.story p {
+  color: #55544f;
+  margin: 0 0 25px;
+}
+
+.work-note {
+  font: 1.45rem/1.2 "Patrick Hand", cursive;
+  transform: rotate(-1deg);
+  max-width: 700px;
+  margin-top: 35px;
+}
+
+.capabilities,
+.toolbox {
+  padding-bottom: 110px;
 }
 
 .capability-grid {
@@ -364,85 +665,7 @@ img {
 }
 
 /* ==========================================================================
-   PAGE: PROJECTS (SCOPED FIX)
-   ========================================================================== */
-.page-projects .projects-hero {
-  padding: 50px 0 30px;
-}
-
-.page-projects .projects-hero h1 {
-  margin: 12px 0 0;
-  font-size: clamp(2.5rem, 5vw, 4.8rem);
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  font-weight: 700;
-}
-
-.page-projects .project-section {
-  padding: 40px 0 80px;
-  border-top: 1px solid var(--line);
-}
-
-.page-projects .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 40px;
-  margin-top: 30px;
-}
-
-.project-card {
-  display: flex;
-  flex-direction: column;
-  background: transparent;
-  transition: transform 0.25s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-}
-
-.project-card .card-image {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  background: var(--paper2);
-  overflow: hidden;
-  border: 1px solid var(--line);
-  margin-bottom: 16px;
-}
-
-.project-card .card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: scale 0.4s ease;
-}
-
-.project-card:hover .card-image img {
-  scale: 1.03;
-}
-
-.project-card h3 {
-  margin: 0 0 6px;
-  font-size: 1.2rem;
-  letter-spacing: -0.02em;
-}
-
-.project-card p {
-  margin: 0 0 12px;
-  font-size: 0.88rem;
-  color: #65645e;
-}
-
-.project-card .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  font: 400 0.65rem "DM Mono", monospace;
-  color: var(--muted);
-}
-
-/* ==========================================================================
-   FOOTER STRIP
+   REVERSED SLIM FOOTER STRIP
    ========================================================================== */
 .site-footer-strip {
   background-color: #000000;
@@ -476,6 +699,11 @@ img {
   opacity: 0.7;
 }
 
+.site-footer-strip .email-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .site-footer-strip .divider {
   opacity: 0.3;
 }
@@ -496,29 +724,54 @@ img {
     gap: 20px;
   }
 
-  .page-about .about-hero h1 {
-    font-size: clamp(2.2rem, 6vw, 3.8rem);
-  }
-
-  .page-about .about-grid {
+  .intro,
+  .home-about,
+  .about-grid {
     grid-template-columns: 1fr;
-    margin-top: 30px;
-    gap: 40px;
+    gap: 45px;
   }
 
-  .page-about .story {
+  .portrait-container {
+    position: static;
+  }
+
+  .intro,
+  .home-about {
+    padding: 80px 0;
+  }
+
+  .project-item {
+    grid-template-columns: 35px 1fr 20px;
+    gap: 15px;
+    padding: 24px 0;
+  }
+
+  a.project-image {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+    aspect-ratio: 1.6;
+    margin-top: 5px;
+  }
+
+  .project-info {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+  }
+
+  .project-index {
     grid-column: 1;
+    grid-row: 1;
   }
 
-  .page-about .portrait-container {
-    grid-column: 1;
-    top: 0;
-    max-width: 360px;
-    margin: 0 auto;
+  .project-client {
+    grid-column: 2;
+    grid-row: 1;
   }
 
-  .page-about .portrait-img {
-    height: auto;
+  a.project-arrow {
+    grid-column: 3;
+    grid-row: 1;
+    text-align: right;
   }
 
   .toolbox-grid {
@@ -549,6 +802,61 @@ img {
     font-size: 0.75rem;
   }
 
+  .hero {
+    padding: 35px 0 20px;
+  }
+
+  .hero-copy {
+    margin-bottom: 30px;
+  }
+
+  .hero-under {
+    flex-direction: column;
+    gap: 6px;
+    line-height: 1.5;
+  }
+
+  .hero-under span:last-child {
+    text-align: left;
+  }
+
+  .category-link {
+    grid-template-columns: 30px 1fr 18px;
+    gap: 12px;
+    min-height: 100px;
+  }
+
+  .category-link h3 {
+    font-size: 1.5rem;
+  }
+
+  .intro,
+  .home-about {
+    padding: 60px 0;
+  }
+
+  .client-strip {
+    padding-bottom: 60px;
+  }
+
+  .page-intro {
+    padding: 40px 0 30px;
+  }
+
+  .project-category {
+    padding-bottom: 40px;
+  }
+
+  .about-hero {
+    padding: 40px 0 60px;
+  }
+
+  .about-grid,
+  .capabilities,
+  .toolbox {
+    padding-bottom: 60px;
+  }
+
   .capability-grid {
     grid-template-columns: 1fr;
   }
@@ -566,5 +874,18 @@ img {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *:before,
+  *:after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }
