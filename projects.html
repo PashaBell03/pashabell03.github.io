@@ -1,111 +1,216 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Projects portfolio by Pavel Belsky — Digital Twins, Space Management, and Historic Preservation.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projects — 3DGeoVis / Pavel Belsky">
   <title>Projects — 3DGeoVis</title>
-  <link rel="stylesheet" href="css/styles.css?v=1.4">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="page-projects">
+<body>
 
-<header class="site-header">
-  <div class="container nav">
-    <a class="logo" href="index.html">3DGeoVis <small>/ PAVEL BELSKY</small></a>
-    <nav class="nav-links">
-      <a href="about.html">About</a>
-      <div class="nav-dropdown">
-        <a href="projects.html" class="nav-projects" aria-current="page">Projects</a>
-        <div class="dropdown-menu">
-          <a href="projects.html#digital-twins">Digital Twins</a>
-          <a href="projects.html#space-management">Smart Space Management</a>
-          <a href="projects.html#historic-preservation">Historical Preservation</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="logo" href="index.html">3DGeoVis <small>/ PAVEL BELSKY</small></a>
+      <nav class="nav-links">
+        <div class="nav-dropdown">
+          <a href="projects.html" class="nav-projects" aria-current="page">Projects <span>⌄</span></a>
+          <div class="dropdown-menu">
+            <a href="projects.html#digital-twins">Digital Twins</a>
+            <a href="projects.html#space-management">Smart Space Management</a>
+            <a href="projects.html#historic-preservation">Historical Preservation</a>
+          </div>
         </div>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <section class="container projects-hero">
-    <div class="eyebrow">Portfolio / Work Examples</div>
-    <h1>Digital Twins, Spatial Models &amp; Interactive Visualization</h1>
-  </section>
-
-  <!-- CATEGORY 1: DIGITAL TWINS -->
-  <section id="digital-twins" class="container project-section">
-    <div class="section-head">
-      <h2>Digital Twins</h2>
-      <span class="eyebrow">City &amp; Infrastructure Scale</span>
+        <a href="about.html">About</a>
+      </nav>
     </div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="card-image">
-          <img src="images/project-corpus-christi.jpg" alt="Port of Corpus Christi Digital Twin" loading="lazy">
-        </div>
-        <h3>Port of Corpus Christi Digital Twin</h3>
-        <p>City-wide 3D building massing, landmark structures, and port facility integration.</p>
-        <div class="tags"><span>ArcGIS Pro</span> · <span>Scene Viewer</span> · <span>CityEngine</span></div>
+  </header>
+
+  <main class="container">
+    <section class="page-intro" style="margin-bottom: 4rem;">
+      <h1 class="display-tight">Selected Work</h1>
+    </section>
+
+    <!-- CATEGORY 1: DIGITAL TWINS -->
+    <section id="digital-twins" class="project-category" style="margin-bottom: 5rem;">
+      <div class="section-head">
+        <h2>01 / Digital Twins</h2>
       </div>
 
-      <div class="project-card">
-        <div class="card-image">
-          <img src="images/project-urban-model.jpg" alt="Urban Massing & Campus Model" loading="lazy">
-        </div>
-        <h3>Urban Campus Digital Twin</h3>
-        <p>High-resolution contextual massing and real-time solar analysis for site development.</p>
-        <div class="tags"><span>3D GIS</span> · <span>Autodesk Forma</span> · <span>Web Scene</span></div>
-      </div>
-    </div>
-  </section>
+      <div class="project-list">
+        <article class="project-item">
+          <span class="project-index">01.1</span>
+          <a href="https://example.com/crypt3d" target="_blank" rel="noopener noreferrer" class="project-image">
+            <img src="images/catApro1.jpg" alt="Port of Corpus Christi Digital Twin" loading="lazy">
+          </a>
+          <div class="project-info">
+            <span class="project-client">Behar Mapping</span>
+            <h3>Crypt3D</h3>
+             <p class="project-summary">3D modeling of mausoleums and columbariums to create detailed digital cemetery environments that support advanced sales, inventory, and management tools. The system has been applied across hundreds of cemetery projects throughout the United States.</p>
+          </div>
+          <a href="https://example.com/crypt3d" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Visit Crypt3D project">↗</a>
+        </article>
 
-  <!-- CATEGORY 2: SMART SPACE MANAGEMENT -->
-  <section id="space-management" class="container project-section">
-    <div class="section-head">
-      <h2>Smart Space Management</h2>
-      <span class="eyebrow">Facility &amp; Asset Level</span>
-    </div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="card-image">
-          <img src="images/project-facility-mgmt.jpg" alt="Indoor Space & Asset Tracking" loading="lazy">
-        </div>
-        <h3>Indoor Space &amp; Asset Management</h3>
-        <p>Converting BIM floor plans into interactive indoor spatial datasets for facilities management.</p>
-        <div class="tags"><span>Revit</span> · <span>ArcGIS Indoors</span> · <span>Floor Plans</span></div>
-      </div>
-    </div>
-  </section>
+        <article class="project-item">
+          <span class="project-index">01.2</span>
+          <a href="https://example.com/port-of-corpus-christi" target="_blank" rel="noopener noreferrer" class="project-image">
+            <img src="images/catApro2.jpg" alt="Urban Environmental Massing" loading="lazy">
+          </a>
+          <div class="project-info">
+            <span class="project-client">The Acceleration Agency</span>
+            <h3>Optics | Port Of Corpus Christi Live Digital Twin</h3>
+            <p class="project-summary">3D modeling of the Port of Corpus Christi at multiple Levels of Detail, creating a realistic digital twin capable of hosting real-time vessels, equipment, and operational information across the port's properties.</p>
+          </div>
+          <a href="https://example.com/port-of-corpus-christi" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Visit Port Of Corpus Christi Live Digital Twin project">↗</a>
+        </article>
 
-  <!-- CATEGORY 3: HISTORICAL PRESERVATION -->
-  <section id="historic-preservation" class="container project-section">
-    <div class="section-head">
-      <h2>Historical Preservation</h2>
-      <span class="eyebrow">Reconstruction &amp; Archival</span>
-    </div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="card-image">
-          <img src="images/project-ellis-island.jpg" alt="Ellis Island Historic Renders" loading="lazy">
-        </div>
-        <h3>Ellis Island Historic Expansion Timeline</h3>
-        <p>Reconstructing chronological landfill growth and architectural changes across key historical eras.</p>
-        <div class="tags"><span>Blender</span> · <span>Cartographic History</span> · <span>3D Render</span></div>
+        <article class="project-item">
+          <span class="project-index">01.3</span>
+          <a href="https://example.com/crane-accident" target="_blank" rel="noopener noreferrer" class="project-image">
+            <img src="images/catApro3.jpg" alt="Civic Center BIM Integration" loading="lazy">
+          </a>
+          <div class="project-info">
+            <span class="project-client">Bauer Forensics, LLC</span>
+            <h3>Google Crane Accident 2019</h3>
+            <p class="project-summary">A detailed 3D reconstruction of a 2019 crane accident at Google's Seattle campus, recreating the surrounding environment and incident conditions to support forensic analysis and help establish the total damages awarded.</p>
+          </div>
+          <a href="https://example.com/crane-accident" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Visit Google Crane Accident 2019 project">↗</a>
+        </article>
       </div>
-    </div>
-  </section>
-</main>
+    </section>
+
+    <!-- CATEGORY 2: SMART SPACE MANAGEMENT -->
+    <section id="space-management" class="project-category" style="margin-bottom: 5rem;">
+      <div class="section-head">
+        <h2>02 / Smart Space Management</h2>
+      </div>
+
+      <div class="project-list">
+        <article class="project-item">
+          <span class="project-index">02.1</span>
+          <a href="https://example.com/kent-wayfinder" target="_blank" rel="noopener noreferrer" class="project-image">
+            <img src="images/catBpro1.jpg" alt="Orthogonal Facade Rectification" loading="lazy">
+          </a>
+          <div class="project-info">
+            <span class="project-client">City of Kent, WA</span>
+            <h3>City Hall Campus Wayfinder App</h3>
+            <p class="project-summary">A 3D navigation and space-management application for the Kent City Hall campus, helping visitors find their way through the complex. Following the building's planned demolition, the digital twin also became an unintended record of the site's physical history.</p>
+          </div>
+          <a href="https://example.com/kent-wayfinder" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Visit City Hall Campus Wayfinder App project">↗</a>
+        </article>
+
+        <article class="project-item">
+          <span class="project-index">02.2</span>
+          <a href="https://example.com/smart-assets" target="_blank" rel="noopener noreferrer" class="project-image">
+            <img src="images/catBpro2.jpg" alt="Pavement and Masonry Maps" loading="lazy">
+          </a>
+          <div class="project-info">
+            <span class="project-client">Demo</span>
+            <h3>Smart Assets Management</h3>
+            <p class="project-summary">A demonstration of smart asset and facility management using a 3D office building, connecting physical spaces and assets within an intuitive digital environment for easier management and visualization.</p>
+          </div>
+          <a href="https://example.com/smart-assets" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Visit Smart Assets Management project">↗</a>
+        </article>
+
+        <article class="project-item">
+          <span class="project-index">02.3</span>
+          <a href="https://example.com/newport" target="_blank" rel="noopener noreferrer" class="project-image">
+            <img src="images/catBpro3.jpg" alt="Glass and Concrete Material Suite" loading="lazy">
+          </a>
+          <div class="project-info">
+            <span class="project-client">Demo</span>
+            <h3>Newport</h3>
+            <p class="project-summary">A 3D real estate inventory and visualization system designed to improve both the marketing and ongoing maintenance of multi-unit properties by connecting apartments, building information, and inventory data in one spatial environment.</p>
+          </div>
+          <a href="https://example.com/newport" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Visit Newport project">↗</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- CATEGORY 3: HISTORICAL PRESERVATION -->
+    <section id="historic-preservation" class="project-category" style="margin-bottom: 5rem;">
+      <div class="section-head">
+        <h2>03 / Historical Preservation</h2>
+      </div>
+
+      <div class="project-list">
+        <article class="project-item">
+          <span class="project-index">03.1</span>
+          <a href="https://example.com/ellis-island" target="_blank" rel="noopener noreferrer" class="project-image">
+            <img src="images/catCpro1.jpg" alt="Ellis Island Landfill History" loading="lazy">
+          </a>
+          <div class="project-info">
+            <span class="project-client">Demo</span>
+            <h3>Ellis Island Historical Preservation</h3>
+             <p class="project-summary">A historical preservation and smart-management concept combining interactive tourism, wayfinding, and storytelling with facilities maintenance and detailed indoor space management—bringing the island's history and present-day operations into one 3D environment.</p>
+          </div>
+          <a href="https://example.com/ellis-island" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Visit Ellis Island Historical Preservation project">↗</a>
+        </article>
+
+        <article class="project-item">
+          <span class="project-index">03.2</span>
+          <a href="https://example.com/stonewall3d" target="_blank" rel="noopener noreferrer" class="project-image">
+            <img src="images/catCpro2.jpg" alt="Archival Site Aerial Cleanups" loading="lazy">
+          </a>
+          <div class="project-info">
+            <span class="project-client">National Parks Conservation Association</span>
+            <h3>Stonewall3D</h3>
+             <p class="project-summary">A historical recreation of the Stonewall Inn bar, reconstructed from scarce documentation, historical references, and testimonies to create an interactive digital representation of one of the most significant spaces in LGBTQ+ history.</p>
+          </div>
+          <a href="https://example.com/stonewall3d" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Visit Stonewall3D project">↗</a>
+        </article>
+
+        <article class="project-item">
+          <span class="project-index">03.3</span>
+          <a href="https://example.com/benette-rice-mill" target="_blank" rel="noopener noreferrer" class="project-image">
+            <img src="images/catCpro3.jpg" alt="Heritage Building Reconstruction" loading="lazy">
+          </a>
+          <div class="project-info">
+            <span class="project-client">Virtual America</span>
+            <h3>Benette Rice Mill</h3>
+          <p class="project-summary">A historical reconstruction of Charleston's Bennett Rice Mill, recreating the lost portions of the landmark around its only remaining facade and placing it within a restored historical and spatial context.</p>
+          </div>
+          <a href="https://example.com/benette-rice-mill" target="_blank" rel="noopener noreferrer" class="project-arrow" aria-label="Visit Benette Rice Mill project">↗</a>
+        </article>
+      </div>
+    </section>
+  </main>
 
 <footer class="site-footer-strip">
   <div class="container footer-flex">
     <div class="footer-links">
-      <span class="email-text">3DGeoVis@gmail.com</span>
-      <span class="divider">|</span>
+      <span class="email-text">3DGeoVis@gmail.com</span>      <span class="divider">|</span>
       <a href="https://www.linkedin.com/in/pavelbelsky/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
     </div>
     <div class="copyright">© 2026 3DGeoVis / Pavel Belsky</div>
   </div>
 </footer>
 
+  <!-- MOBILE SCROLL REVEAL SCRIPT -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const projectImages = document.querySelectorAll('.project-image img');
+
+      if (!projectImages.length) return;
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -20% 0px',
+        threshold: 0.15
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+          } else {
+            entry.target.classList.remove('in-view');
+          }
+        });
+      }, observerOptions);
+
+      projectImages.forEach(img => observer.observe(img));
+    });
+  </script>
 </body>
 </html>
