@@ -8,9 +8,14 @@
 ```
 <title>Newport Residential Inventory</title>
 
+<!-- Newport custom styles -->
+<link rel="stylesheet" href="newportstyles.css">
+
 <!-- ArcGIS Maps SDK -->
-<link rel="stylesheet"
-      href="https://js.arcgis.com/4.34/esri/themes/light/main.css">
+<link
+    rel="stylesheet"
+    href="https://js.arcgis.com/4.34/esri/themes/light/main.css"
+>
 
 <script src="https://js.arcgis.com/4.34/"></script>
 ```
@@ -19,383 +24,247 @@
 
 <body>
 
-<h1>Newport Residential Inventory</h1>
-
-<p>
-    Live inventory pulled directly from ArcGIS Online.
-</p>
-
-<hr>
-
-<h2>Filters</h2>
-
-<label>
-    Building:
-    <select id="buildingFilter">
-        <option value="">All Buildings</option>
-    </select>
-</label>
-
-  
-
-<label>
-    Bedrooms:
-    <select id="bedFilter">
-        <option value="">Any</option>
-        <option value="0">Studio</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4+</option>
-    </select>
-</label>
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
 
-  
+<header>
+    <div class="header-inner">
 
-<label>
-    Availability:
-    <select id="availabilityFilter">
-        <option value="">All</option>
-        <option value="now">Available Now</option>
-    </select>
-</label>
+```
+    <div class="eyebrow">
+        Residential Inventory
+    </div>
 
-<hr>
+    <h1>Newport</h1>
 
-<h2 id="resultCount">Loading...</h2>
+    <p>
+        Explore available residences, spaces and buildings.
+    </p>
 
-<div id="viewDiv" style="height:500px;"></div>
+</div>
+```
 
-<hr>
+</header>
 
-<div id="inventory"></div>
+<!-- =====================================================
+     FILTERS
+     ===================================================== -->
 
-<script>
+<div class="filters">
 
-require([
-    "esri/Map",
-    "esri/views/MapView",
-    "esri/layers/FeatureLayer"
-], function(Map, MapView, FeatureLayer) {
+```
+<div class="filter-panel">
 
-    /*
-     * Public ArcGIS Online Feature Layer
-     */
-    const layer = new FeatureLayer({
-        url: "https://services8.arcgis.com/nGsWM8FNwGWwaJ6e/arcgis/rest/services/Newport_Vector_01/FeatureServer/0"
-    });
+    <div class="filter-group">
 
-    /*
-     * Map
-     */
-    const map = new Map({
-        basemap: "streets-vector",
-        layers: [layer]
-    });
+        <label for="buildingFilter">
+            Building
+        </label>
 
-    const view = new MapView({
-        container: "viewDiv",
-        map: map,
-        center: [-74.05, 40.73],
-        zoom: 15
-    });
+        <select id="buildingFilter">
+            <option value="">
+                All Buildings
+            </option>
+        </select>
 
-    /*
-     * Load layer
-     */
-    layer.when(function() {
+    </div>
 
-        /*
-         * Populate building filter
-         */
-        layer.queryFeatures({
-            where: "1=1",
-            outFields: ["BuildName"],
-            returnGeometry: false,
-            orderByFields: ["BuildName"]
-        }).then(function(result) {
 
-            const buildings = [];
+    <div class="filter-group">
 
-            result.features.forEach(function(feature) {
+        <label for="bedFilter">
+            Bedrooms
+        </label>
 
-                const building = feature.attributes.BuildName;
+        <select id="bedFilter">
 
-                if (
-                    building &&
-                    !buildings.includes(building)
-                ) {
-                    buildings.push(building);
-                }
+            <option value="">
+                Any
+            </option>
 
-            });
+            <option value="0">
+                Studio
+            </option>
 
-            const select =
-                document.getElementById("buildingFilter");
+            <option value="1">
+                1 Bedroom
+            </option>
 
-            buildings.forEach(function(building) {
+            <option value="2">
+                2 Bedrooms
+            </option>
 
-                const option =
-                    document.createElement("option");
+            <option value="3">
+                3 Bedrooms
+            </option>
 
-                option.value = building;
-                option.textContent = building;
+            <option value="4">
+                4+ Bedrooms
+            </option>
 
-                select.appendChild(option);
+        </select>
 
-            });
+    </div>
 
-        });
 
-        /*
-         * Initial inventory
-         */
-        loadInventory();
+    <div class="filter-group">
 
-    });
+        <label for="availabilityFilter">
+            Availability
+        </label>
 
+        <select id="availabilityFilter">
 
-    /*
-     * Load inventory
-     */
-    function loadInventory() {
+            <option value="">
+                All
+            </option>
 
-        const building =
-            document.getElementById("buildingFilter").value;
+            <option value="now">
+                Available Now
+            </option>
 
-        const beds =
-            document.getElementById("bedFilter").value;
+        </select>
 
-        const availability =
-            document.getElementById("availabilityFilter").value;
+    </div>
 
+</div>
+```
 
-        let where = "1=1";
+</div>
 
+<!-- =====================================================
+     STATISTICS
+     ===================================================== -->
 
-        /*
-         * Building
-         */
-        if (building) {
+<div class="stats">
 
-            where +=
-                " AND BuildName = '" +
-                building.replace(/'/g, "''") +
-                "'";
+```
+<div class="stat">
 
-        }
+    <div class="stat-label">
+        Results
+    </div>
 
+    <div
+        class="stat-value"
+        id="statResults"
+    >
+        —
+    </div>
 
-        /*
-         * Bedrooms
-         */
-        if (beds) {
+</div>
 
-            if (beds === "4") {
 
-                where += " AND Beds >= 4";
+<div class="stat">
 
-            } else {
+    <div class="stat-label">
+        Buildings
+    </div>
 
-                where +=
-                    " AND Beds = " +
-                    Number(beds);
+    <div
+        class="stat-value"
+        id="statBuildings"
+    >
+        —
+    </div>
 
-            }
+</div>
 
-        }
 
+<div class="stat">
 
-        /*
-         * Available now
-         */
-        if (availability === "now") {
+    <div class="stat-label">
+        Average Size
+    </div>
 
-            where +=
-                " AND AvailNow = 1";
+    <div
+        class="stat-value"
+        id="statSqft"
+    >
+        —
+    </div>
 
-        }
+</div>
 
 
-        /*
-         * Query ArcGIS Online
-         */
-        layer.queryFeatures({
+<div class="stat">
 
-            where: where,
+    <div class="stat-label">
+        From
+    </div>
 
-            outFields: [
-                "BuildName",
-                "AppNumFull",
-                "Floor_1",
-                "BedBath",
-                "Beds",
-                "Baths",
-                "SQFT",
-                "AvailNow",
-                "AvailDate",
-                "Rent",
-                "RentWeb",
-                "Corner",
-                "View_",
-                "Height",
-                "ADA"
-            ],
+    <div
+        class="stat-value"
+        id="statRent"
+    >
+        —
+    </div>
 
-            returnGeometry: true,
+</div>
+```
 
-            orderByFields: [
-                "BuildName",
-                "Floor_1",
-                "AppNumFull"
-            ]
+</div>
 
-        }).then(function(result) {
+<!-- =====================================================
+     MAIN CONTENT
+     ===================================================== -->
 
-            displayInventory(result.features);
+<div class="main">
 
-        });
+```
+<!-- MAP -->
 
-    }
+<div class="map-container">
 
+    <div id="viewDiv"></div>
 
-    /*
-     * Display inventory cards
-     */
-    function displayInventory(features) {
+</div>
 
-        const container =
-            document.getElementById("inventory");
 
-        container.innerHTML = "";
+<!-- INVENTORY -->
 
-        document.getElementById("resultCount").textContent =
-            features.length +
-            " residences found";
+<div class="inventory-panel">
 
+    <div class="inventory-header">
 
-        features.forEach(function(feature) {
+        <h2>
+            Available Residences
+        </h2>
 
-            const a = feature.attributes;
+        <div
+            class="inventory-count"
+            id="resultCount"
+        >
+            Loading...
+        </div>
 
+    </div>
 
-            const card =
-                document.createElement("div");
 
+    <div id="inventory">
 
-            card.style.marginBottom = "25px";
+        <div class="empty-state">
+            Loading inventory...
+        </div>
 
+    </div>
 
-            const title =
-                a.AppNumFull ||
-                "Residence";
+</div>
+```
 
+</div>
 
-            const building =
-                a.BuildName ||
-                "";
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
 
+<footer>
 
-            const rent =
-                a.Rent ?
-                "$" + Number(a.Rent).toLocaleString() :
-                "Rent not listed";
+```
+Newport Residential Inventory
+```
 
+</footer>
 
-            const sqft =
-                a.SQFT ?
-                Number(a.SQFT).toLocaleString() +
-                " SF" :
-                "";
-
-
-            const availability =
-                a.AvailNow === 1 ?
-                "Available Now" :
-                a.AvailDate ?
-                "Available " + a.AvailDate :
-                "";
-
-
-            card.innerHTML = `
-
-                <h3>${title}</h3>
-
-                <strong>${building}</strong>
-
-                <p>
-                    ${a.BedBath || ""}
-                    ${sqft ? " · " + sqft : ""}
-                    ${a.Floor_1 ? " · Floor " + a.Floor_1 : ""}
-                </p>
-
-                <p>
-                    <strong>${rent}</strong>
-                </p>
-
-                <p>
-                    ${availability}
-                </p>
-
-                ${
-                    a.Corner
-                    ? "<p>Corner: " + a.Corner + "</p>"
-                    : ""
-                }
-
-                ${
-                    a.View_
-                    ? "<p>View: " + a.View_ + "</p>"
-                    : ""
-                }
-
-            `;
-
-
-            /*
-             * Zoom to selected property
-             */
-            card.addEventListener("click", function() {
-
-                if (feature.geometry) {
-
-                    view.goTo({
-                        target: feature.geometry,
-                        zoom: 19
-                    });
-
-                }
-
-            });
-
-
-            container.appendChild(card);
-
-        });
-
-    }
-
-
-    /*
-     * Filter events
-     */
-    document
-        .getElementById("buildingFilter")
-        .addEventListener("change", loadInventory);
-
-
-    document
-        .getElementById("bedFilter")
-        .addEventListener("change", loadInventory);
-
-
-    document
-        .getElementById("availabilityFilter")
-        .addEventListener("change", loadInventory);
-
-});
-
-</script>
-
-</body>
-</html>
+<!-- =============
