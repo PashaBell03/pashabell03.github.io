@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 ```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
 <title>Newport Residential Inventory</title>
 
-<!-- Newport custom styles -->
-<link rel="stylesheet" href="css/newportstyles.css">
+<link
+    rel="stylesheet"
+    href="newportstyles.css"
+>
 
-<!-- ArcGIS Maps SDK -->
 <link
     rel="stylesheet"
     href="https://js.arcgis.com/4.34/esri/themes/light/main.css"
@@ -24,19 +31,18 @@
 
 <body>
 
-<!-- =====================================================
-     HEADER
-     ===================================================== -->
-
 <header>
-    <div class="header-inner">
 
 ```
+<div class="header-inner">
+
     <div class="eyebrow">
-        Residential Inventory
+        RESIDENTIAL INVENTORY
     </div>
 
-    <h1>Newport</h1>
+    <h1>
+        Newport
+    </h1>
 
     <p>
         Explore available residences, spaces and buildings.
@@ -47,14 +53,11 @@
 
 </header>
 
-<!-- =====================================================
-     FILTERS
-     ===================================================== -->
-
-<div class="filters">
+<section class="filters">
 
 ```
 <div class="filter-panel">
+
 
     <div class="filter-group">
 
@@ -63,9 +66,11 @@
         </label>
 
         <select id="buildingFilter">
+
             <option value="">
                 All Buildings
             </option>
+
         </select>
 
     </div>
@@ -128,16 +133,21 @@
 
     </div>
 
+
+    <button
+        id="resetButton"
+        type="button"
+    >
+        Reset
+    </button>
+
+
 </div>
 ```
 
-</div>
+</section>
 
-<!-- =====================================================
-     STATISTICS
-     ===================================================== -->
-
-<div class="stats">
+<section class="stats">
 
 ```
 <div class="stat">
@@ -204,42 +214,35 @@
 </div>
 ```
 
-</div>
+</section>
 
-<!-- =====================================================
-     MAIN CONTENT
-     ===================================================== -->
-
-<div class="main">
+<main class="main">
 
 ```
-<!-- MAP -->
-
-<div class="map-container">
+<section class="map-container">
 
     <div id="viewDiv"></div>
 
-</div>
+</section>
 
 
-<!-- INVENTORY -->
+<section class="inventory-panel">
 
-<div class="inventory-panel">
 
     <div class="inventory-header">
 
         <h2>
-            Available Residences
+            Residences
         </h2>
 
-        <div
-            class="inventory-count"
-            id="resultCount"
-        >
+        <div id="resultCount">
             Loading...
         </div>
 
     </div>
+
+
+    <div id="errorMessage"></div>
 
 
     <div id="inventory">
@@ -250,14 +253,11 @@
 
     </div>
 
-</div>
+
+</section>
 ```
 
-</div>
-
-<!-- =====================================================
-     FOOTER
-     ===================================================== -->
+</main>
 
 <footer>
 
@@ -267,4 +267,1079 @@ Newport Residential Inventory
 
 </footer>
 
-<!-- =============
+<script>
+
+
+require([
+
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/layers/FeatureLayer"
+
+], function (
+    Map,
+    MapView,
+    FeatureLayer
+) {
+
+
+    /* =====================================================
+       CONFIGURATION
+       ===================================================== */
+
+
+    const SERVICE_URL =
+        "https://services8.arcgis.com/nGsWM8FNwGWwaJ6e/arcgis/rest/services/Newport_Vector_01/FeatureServer/0";
+
+
+    /* =====================================================
+       LAYER
+       ===================================================== */
+
+
+    const inventoryLayer =
+        new FeatureLayer({
+
+            url: SERVICE_URL,
+
+            outFields: ["*"],
+
+            popupEnabled: false
+
+        });
+
+
+    /* =====================================================
+       MAP
+       ===================================================== */
+
+
+    const map =
+        new Map({
+
+            basemap: "gray-vector",
+
+            layers: [
+                inventoryLayer
+            ]
+
+        });
+
+
+    const view =
+        new MapView({
+
+            container: "viewDiv",
+
+            map: map,
+
+            center: [-74.04, 40.73],
+
+            zoom: 15,
+
+            constraints: {
+
+                snapToZoom: false
+
+            }
+
+        });
+
+
+    /* =====================================================
+       START APPLICATION
+       ===================================================== */
+
+
+    inventoryLayer.load()
+
+        .then(function () {
+
+            console.log(
+                "Newport layer loaded successfully."
+            );
+
+
+            /*
+             * Zoom to actual layer extent.
+             */
+
+            if (
+                inventoryLayer.fullExtent
+            ) {
+
+                view.goTo(
+                    inventoryLayer.fullExtent
+                );
+
+            }
+
+
+            /*
+             * Load filters.
+             */
+
+            loadBuildingList();
+
+
+            /*
+             * Load inventory.
+             */
+
+            loadInventory();
+
+        })
+
+        .catch(function (error) {
+
+            showError(
+                "Unable to load the Newport ArcGIS layer.",
+                error
+            );
+
+        });
+
+
+    /* =====================================================
+       BUILDING LIST
+       ===================================================== */
+
+
+    function loadBuildingList() {
+
+
+        inventoryLayer.queryFeatures({
+
+            where: "1=1",
+
+            outFields: [
+                "BuildName"
+            ],
+
+            returnGeometry: false,
+
+            returnDistinctValues: true
+
+        })
+
+        .then(function (result) {
+
+
+            const buildings =
+                [];
+
+
+            result.features.forEach(
+                function (feature) {
+
+
+                    const name =
+                        feature.attributes.BuildName;
+
+
+                    if (
+                        name !== null &&
+                        name !== undefined &&
+                        String(name).trim() !== ""
+                    ) {
+
+                        buildings.push(
+                            String(name)
+                        );
+
+                    }
+
+                }
+            );
+
+
+            /*
+             * Remove duplicates.
+             */
+
+            const uniqueBuildings =
+                [
+                    ...new Set(buildings)
+                ];
+
+
+            uniqueBuildings.sort(
+                function (a, b) {
+
+                    return a.localeCompare(
+                        b,
+                        undefined,
+                        {
+                            numeric: true
+                        }
+                    );
+
+                }
+            );
+
+
+            const select =
+                document.getElementById(
+                    "buildingFilter"
+                );
+
+
+            /*
+             * Clear existing options except All.
+             */
+
+            select.innerHTML = "";
+
+            const allOption =
+                document.createElement(
+                    "option"
+                );
+
+            allOption.value = "";
+
+            allOption.textContent =
+                "All Buildings";
+
+            select.appendChild(
+                allOption
+            );
+
+
+            uniqueBuildings.forEach(
+                function (building) {
+
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+
+                    option.value =
+                        building;
+
+
+                    option.textContent =
+                        building;
+
+
+                    select.appendChild(
+                        option
+                    );
+
+                }
+            );
+
+
+            console.log(
+                "Buildings loaded:",
+                uniqueBuildings
+            );
+
+        })
+
+        .catch(function (error) {
+
+            showError(
+                "Could not load the building list.",
+                error
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       INVENTORY QUERY
+       ===================================================== */
+
+
+    function loadInventory() {
+
+
+        clearError();
+
+
+        const building =
+            document.getElementById(
+                "buildingFilter"
+            ).value;
+
+
+        const beds =
+            document.getElementById(
+                "bedFilter"
+            ).value;
+
+
+        const availability =
+            document.getElementById(
+                "availabilityFilter"
+            ).value;
+
+
+        let where =
+            "1=1";
+
+
+        /*
+         * Building
+         */
+
+        if (building) {
+
+            where +=
+                " AND BuildName = '" +
+                building.replace(
+                    /'/g,
+                    "''"
+                ) +
+                "'";
+
+        }
+
+
+        /*
+         * Bedrooms
+         */
+
+        if (beds !== "") {
+
+
+            if (beds === "4") {
+
+                where +=
+                    " AND Beds >= 4";
+
+            }
+
+            else {
+
+                where +=
+                    " AND Beds = " +
+                    Number(beds);
+
+            }
+
+        }
+
+
+        /*
+         * Available now.
+         *
+         * IMPORTANT:
+         * AvailNow is a STRING in the
+         * actual ArcGIS layer.
+         */
+
+        if (availability === "now") {
+
+            where +=
+                " AND AvailNow = 'Yes'";
+
+        }
+
+
+        console.log(
+            "Query:",
+            where
+        );
+
+
+        inventoryLayer.queryFeatures({
+
+            where: where,
+
+            outFields: [
+
+                "OBJECTID",
+
+                "BuildName",
+
+                "AppNumFull",
+
+                "Floor_1",
+
+                "BedBath",
+
+                "Beds",
+
+                "Baths",
+
+                "SQFT",
+
+                "AvailNow",
+
+                "AvailDate",
+
+                "Rent",
+
+                "RentWeb",
+
+                "Corner",
+
+                "View_",
+
+                "Height",
+
+                "ADA"
+
+            ],
+
+            returnGeometry: true,
+
+            returnZ: false
+
+        })
+
+        .then(function (result) {
+
+
+            console.log(
+                "Inventory features:",
+                result.features.length
+            );
+
+
+            displayInventory(
+                result.features
+            );
+
+
+        })
+
+        .catch(function (error) {
+
+            showError(
+                "Could not retrieve the inventory data.",
+                error
+            );
+
+        });
+
+    }
+
+
+    /* =====================================================
+       DISPLAY INVENTORY
+       ===================================================== */
+
+
+    function displayInventory(
+        features
+    ) {
+
+
+        const container =
+            document.getElementById(
+                "inventory"
+            );
+
+
+        container.innerHTML = "";
+
+
+        document.getElementById(
+            "resultCount"
+        ).textContent =
+            features.length.toLocaleString() +
+            " residences";
+
+
+        updateStatistics(
+            features
+        );
+
+
+        if (
+            features.length === 0
+        ) {
+
+            container.innerHTML = `
+
+                <div class="empty-state">
+
+                    <strong>
+                        No residences found
+                    </strong>
+
+                    <p>
+                        Try changing your filters.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        features.forEach(
+            function (feature) {
+
+
+                const a =
+                    feature.attributes;
+
+
+                const card =
+                    document.createElement(
+                        "article"
+                    );
+
+
+                card.className =
+                    "property-card";
+
+
+                /*
+                 * Basic information
+                 */
+
+                const apartment =
+                    a.AppNumFull ||
+                    "Residence";
+
+
+                const building =
+                    a.BuildName ||
+                    "Newport";
+
+
+                /*
+                 * Rent
+                 */
+
+                let rent =
+                    "Contact for price";
+
+
+                if (
+                    a.Rent !== null &&
+                    a.Rent !== undefined &&
+                    !isNaN(
+                        Number(a.Rent)
+                    )
+                ) {
+
+                    rent =
+                        "$" +
+                        Number(
+                            a.Rent
+                        ).toLocaleString();
+
+                }
+
+
+                /*
+                 * Details
+                 */
+
+                let details = "";
+
+
+                if (
+                    a.BedBath
+                ) {
+
+                    details +=
+                        `<span class="property-detail">
+                            ${a.BedBath}
+                        </span>`;
+
+                }
+
+                else {
+
+                    if (
+                        a.Beds !== null &&
+                        a.Beds !== undefined
+                    ) {
+
+                        details +=
+                            `<span class="property-detail">
+                                ${a.Beds} bed
+                            </span>`;
+
+                    }
+
+
+                    if (
+                        a.Baths !== null &&
+                        a.Baths !== undefined
+                    ) {
+
+                        details +=
+                            `<span class="property-detail">
+                                ${a.Baths} bath
+                            </span>`;
+
+                    }
+
+                }
+
+
+                if (
+                    a.SQFT
+                ) {
+
+                    details +=
+                        `<span class="property-detail">
+                            ${Number(
+                                a.SQFT
+                            ).toLocaleString()} SF
+                        </span>`;
+
+                }
+
+
+                if (
+                    a.Floor_1 !== null &&
+                    a.Floor_1 !== undefined
+                ) {
+
+                    details +=
+                        `<span class="property-detail">
+                            Floor ${a.Floor_1}
+                        </span>`;
+
+                }
+
+
+                if (
+                    a.View_
+                ) {
+
+                    details +=
+                        `<span class="property-detail">
+                            ${a.View_}
+                        </span>`;
+
+                }
+
+
+                /*
+                 * Availability
+                 */
+
+                let availability =
+                    "";
+
+
+                if (
+                    String(
+                        a.AvailNow
+                    ).toLowerCase() === "yes"
+                ) {
+
+                    availability =
+                        "Available Now";
+
+                }
+
+                else if (
+                    a.AvailDate
+                ) {
+
+                    availability =
+                        "Available " +
+                        a.AvailDate;
+
+                }
+
+
+                /*
+                 * Card HTML
+                 */
+
+                card.innerHTML = `
+
+                    <div class="property-top">
+
+                        <div>
+
+                            <h3 class="property-title">
+                                ${apartment}
+                            </h3>
+
+                            <div class="property-building">
+                                ${building}
+                            </div>
+
+                        </div>
+
+                        <div class="property-price">
+                            ${rent}
+                        </div>
+
+                    </div>
+
+
+                    <div class="property-details">
+
+                        ${details}
+
+                    </div>
+
+
+                    ${
+                        availability
+                        ?
+                        `
+                        <div class="property-availability">
+                            ${availability}
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+                `;
+
+
+                /*
+                 * Zoom to polygon.
+                 */
+
+                card.addEventListener(
+                    "click",
+                    function () {
+
+
+                        if (
+                            feature.geometry
+                        ) {
+
+
+                            view.goTo({
+
+                                target:
+                                    feature.geometry,
+
+                                zoom: 20
+
+                            });
+
+
+                        }
+
+                    }
+                );
+
+
+                container.appendChild(
+                    card
+                );
+
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       STATISTICS
+       ===================================================== */
+
+
+    function updateStatistics(
+        features
+    ) {
+
+
+        /*
+         * Results
+         */
+
+        document.getElementById(
+            "statResults"
+        ).textContent =
+            features.length.toLocaleString();
+
+
+        /*
+         * Buildings
+         */
+
+        const buildings =
+            new Set();
+
+
+        features.forEach(
+            function (feature) {
+
+
+                const name =
+                    feature.attributes.BuildName;
+
+
+                if (name) {
+
+                    buildings.add(
+                        name
+                    );
+
+                }
+
+            }
+        );
+
+
+        document.getElementById(
+            "statBuildings"
+        ).textContent =
+            buildings.size;
+
+
+        /*
+         * Average square footage
+         */
+
+        let sqftTotal =
+            0;
+
+        let sqftCount =
+            0;
+
+
+        features.forEach(
+            function (feature) {
+
+
+                const sqft =
+                    Number(
+                        feature.attributes.SQFT
+                    );
+
+
+                if (
+                    !isNaN(sqft) &&
+                    sqft > 0
+                ) {
+
+                    sqftTotal +=
+                        sqft;
+
+                    sqftCount++;
+
+                }
+
+            }
+        );
+
+
+        if (
+            sqftCount > 0
+        ) {
+
+            const average =
+                Math.round(
+                    sqftTotal /
+                    sqftCount
+                );
+
+
+            document.getElementById(
+                "statSqft"
+            ).textContent =
+                average.toLocaleString() +
+                " SF";
+
+        }
+
+        else {
+
+            document.getElementById(
+                "statSqft"
+            ).textContent =
+                "—";
+
+        }
+
+
+        /*
+         * Minimum rent
+         */
+
+        let minimumRent =
+            Infinity;
+
+
+        features.forEach(
+            function (feature) {
+
+
+                const rent =
+                    Number(
+                        feature.attributes.Rent
+                    );
+
+
+                if (
+                    !isNaN(rent) &&
+                    rent > 0
+                ) {
+
+                    minimumRent =
+                        Math.min(
+                            minimumRent,
+                            rent
+                        );
+
+                }
+
+            }
+        );
+
+
+        if (
+            minimumRent !==
+            Infinity
+        ) {
+
+            document.getElementById(
+                "statRent"
+            ).textContent =
+                "$" +
+                minimumRent.toLocaleString();
+
+        }
+
+        else {
+
+            document.getElementById(
+                "statRent"
+            ).textContent =
+                "—";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       ERROR HANDLING
+       ===================================================== */
+
+
+    function showError(
+        message,
+        error
+    ) {
+
+
+        console.error(
+            message,
+            error
+        );
+
+
+        const box =
+            document.getElementById(
+                "errorMessage"
+            );
+
+
+        box.innerHTML = `
+
+            <div class="error-box">
+
+                <strong>
+                    ${message}
+                </strong>
+
+                <small>
+                    Open the browser console
+                    for technical details.
+                </small>
+
+            </div>
+
+        `;
+
+
+        document.getElementById(
+            "resultCount"
+        ).textContent =
+            "Error";
+
+    }
+
+
+    function clearError() {
+
+        document.getElementById(
+            "errorMessage"
+        ).innerHTML = "";
+
+    }
+
+
+    /* =====================================================
+       FILTER EVENTS
+       ===================================================== */
+
+
+    document.getElementById(
+        "buildingFilter"
+    ).addEventListener(
+        "change",
+        loadInventory
+    );
+
+
+    document.getElementById(
+        "bedFilter"
+    ).addEventListener(
+        "change",
+        loadInventory
+    );
+
+
+    document.getElementById(
+        "availabilityFilter"
+    ).addEventListener(
+        "change",
+        loadInventory
+    );
+
+
+    document.getElementById(
+        "resetButton"
+    ).addEventListener(
+        "click",
+        function () {
+
+
+            document.getElementById(
+                "buildingFilter"
+            ).value = "";
+
+
+            document.getElementById(
+                "bedFilter"
+            ).value = "";
+
+
+            document.getElementById(
+                "availabilityFilter"
+            ).value = "";
+
+
+            loadInventory();
+
+        }
+    );
+
+
+});
+
+</script>
+
+</body>
+
+</html>
