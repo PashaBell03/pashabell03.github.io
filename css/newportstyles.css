@@ -1,0 +1,1002 @@
+/* =========================================================
+NEWPORT RESIDENTIAL INVENTORY
+========================================================= */
+
+:root {
+
+```
+--navy: #172333;
+
+--blue: #2f6f91;
+
+--aqua: #6fb6b0;
+
+--light-aqua: #e8f3f2;
+
+--background: #f5f7f8;
+
+--white: #ffffff;
+
+--text: #26323b;
+
+--muted: #71808a;
+
+--border: #dfe5e8;
+
+--shadow:
+    0 8px 30px
+    rgba(20, 40, 55, 0.08);
+
+--radius: 14px;
+```
+
+}
+
+/* =========================================================
+GENERAL
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  }
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+
+```
+margin: 0;
+
+background:
+    var(--background);
+
+color:
+    var(--text);
+
+font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+```
+
+}
+
+/* =========================================================
+HEADER
+========================================================= */
+
+header {
+
+```
+background:
+    var(--navy);
+
+color:
+    white;
+
+padding:
+    34px 45px;
+```
+
+}
+
+.header-inner {
+
+```
+max-width:
+    1500px;
+
+margin:
+    auto;
+```
+
+}
+
+.eyebrow {
+
+```
+text-transform:
+    uppercase;
+
+letter-spacing:
+    3px;
+
+font-size:
+    11px;
+
+opacity:
+    0.65;
+
+margin-bottom:
+    10px;
+```
+
+}
+
+header h1 {
+
+```
+margin:
+    0;
+
+font-size:
+    clamp(
+        32px,
+        4vw,
+        54px
+    );
+
+font-weight:
+    500;
+
+letter-spacing:
+    -1.5px;
+```
+
+}
+
+header p {
+
+```
+margin:
+    10px 0 0;
+
+color:
+    #b8c7cf;
+
+font-size:
+    16px;
+```
+
+}
+
+/* =========================================================
+FILTERS
+========================================================= */
+
+.filters {
+
+```
+max-width:
+    1500px;
+
+margin:
+    -20px auto 30px;
+
+padding:
+    0 25px;
+
+position:
+    relative;
+
+z-index:
+    10;
+```
+
+}
+
+.filter-panel {
+
+```
+background:
+    var(--white);
+
+border-radius:
+    var(--radius);
+
+box-shadow:
+    var(--shadow);
+
+padding:
+    20px 24px;
+
+display:
+    flex;
+
+gap:
+    18px;
+
+flex-wrap:
+    wrap;
+
+align-items:
+    flex-end;
+```
+
+}
+
+.filter-group {
+
+```
+display:
+    flex;
+
+flex-direction:
+    column;
+
+gap:
+    6px;
+```
+
+}
+
+.filter-group label {
+
+```
+font-size:
+    10px;
+
+text-transform:
+    uppercase;
+
+letter-spacing:
+    1px;
+
+color:
+    var(--muted);
+```
+
+}
+
+.filter-group select {
+
+```
+border:
+    1px solid var(--border);
+
+background:
+    white;
+
+color:
+    var(--text);
+
+border-radius:
+    9px;
+
+padding:
+    10px 34px 10px 12px;
+
+min-width:
+    160px;
+
+cursor:
+    pointer;
+
+font-size:
+    14px;
+```
+
+}
+
+.filter-group select:hover {
+
+```
+border-color:
+    #b8c7cc;
+```
+
+}
+
+.filter-group select:focus {
+
+```
+outline:
+    2px solid var(--aqua);
+
+outline-offset:
+    1px;
+```
+
+}
+
+/* =========================================================
+STATISTICS
+========================================================= */
+
+.stats {
+
+```
+max-width:
+    1500px;
+
+margin:
+    0 auto 30px;
+
+padding:
+    0 25px;
+
+display:
+    grid;
+
+grid-template-columns:
+    repeat(4, 1fr);
+
+gap:
+    15px;
+```
+
+}
+
+.stat {
+
+```
+background:
+    var(--white);
+
+border-radius:
+    var(--radius);
+
+padding:
+    20px 24px;
+
+box-shadow:
+    var(--shadow);
+```
+
+}
+
+.stat-label {
+
+```
+color:
+    var(--muted);
+
+text-transform:
+    uppercase;
+
+letter-spacing:
+    1px;
+
+font-size:
+    10px;
+```
+
+}
+
+.stat-value {
+
+```
+font-size:
+    30px;
+
+margin-top:
+    7px;
+
+font-weight:
+    500;
+
+color:
+    var(--navy);
+```
+
+}
+
+/* =========================================================
+MAIN
+========================================================= */
+
+.main {
+
+```
+max-width:
+    1500px;
+
+margin:
+    auto;
+
+padding:
+    0 25px 50px;
+
+display:
+    grid;
+
+grid-template-columns:
+    minmax(400px, 1fr)
+    minmax(350px, 0.8fr);
+
+gap:
+    25px;
+```
+
+}
+
+/* =========================================================
+MAP
+========================================================= */
+
+.map-container {
+
+```
+background:
+    white;
+
+border-radius:
+    var(--radius);
+
+overflow:
+    hidden;
+
+box-shadow:
+    var(--shadow);
+
+min-height:
+    700px;
+```
+
+}
+
+#viewDiv {
+
+```
+height:
+    700px;
+
+width:
+    100%;
+```
+
+}
+
+/* =========================================================
+INVENTORY
+========================================================= */
+
+.inventory-panel {
+
+```
+min-height:
+    700px;
+```
+
+}
+
+.inventory-header {
+
+```
+display:
+    flex;
+
+justify-content:
+    space-between;
+
+align-items:
+    baseline;
+
+margin-bottom:
+    15px;
+```
+
+}
+
+.inventory-header h2 {
+
+```
+margin:
+    0;
+
+font-size:
+    21px;
+
+font-weight:
+    500;
+```
+
+}
+
+.inventory-count {
+
+```
+color:
+    var(--muted);
+
+font-size:
+    13px;
+```
+
+}
+
+/* =========================================================
+INVENTORY SCROLL AREA
+========================================================= */
+
+#inventory {
+
+```
+max-height:
+    700px;
+
+overflow-y:
+    auto;
+
+padding-right:
+    6px;
+```
+
+}
+
+#inventory::-webkit-scrollbar {
+
+```
+width:
+    6px;
+```
+
+}
+
+#inventory::-webkit-scrollbar-track {
+
+```
+background:
+    transparent;
+```
+
+}
+
+#inventory::-webkit-scrollbar-thumb {
+
+```
+background:
+    #cbd5d9;
+
+border-radius:
+    20px;
+```
+
+}
+
+#inventory::-webkit-scrollbar-thumb:hover {
+
+```
+background:
+    #aab8be;
+```
+
+}
+
+/* =========================================================
+PROPERTY CARD
+========================================================= */
+
+.property-card {
+
+```
+background:
+    var(--white);
+
+border-radius:
+    var(--radius);
+
+padding:
+    20px;
+
+margin-bottom:
+    14px;
+
+box-shadow:
+    var(--shadow);
+
+cursor:
+    pointer;
+
+border:
+    1px solid transparent;
+
+transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+```
+
+}
+
+.property-card:hover {
+
+```
+transform:
+    translateY(-2px);
+
+box-shadow:
+    0 12px 35px
+    rgba(20, 40, 55, 0.13);
+
+border-color:
+    var(--aqua);
+```
+
+}
+
+.property-top {
+
+```
+display:
+    flex;
+
+justify-content:
+    space-between;
+
+align-items:
+    flex-start;
+
+gap:
+    15px;
+```
+
+}
+
+.property-title {
+
+```
+margin:
+    0;
+
+font-size:
+    20px;
+
+font-weight:
+    500;
+
+color:
+    var(--navy);
+```
+
+}
+
+.property-building {
+
+```
+margin-top:
+    4px;
+
+color:
+    var(--muted);
+
+font-size:
+    13px;
+```
+
+}
+
+.property-price {
+
+```
+white-space:
+    nowrap;
+
+font-size:
+    19px;
+
+font-weight:
+    600;
+
+color:
+    var(--blue);
+```
+
+}
+
+.property-details {
+
+```
+display:
+    flex;
+
+flex-wrap:
+    wrap;
+
+gap:
+    7px;
+
+margin-top:
+    16px;
+```
+
+}
+
+.property-detail {
+
+```
+background:
+    var(--light-aqua);
+
+border-radius:
+    6px;
+
+padding:
+    6px 9px;
+
+font-size:
+    12px;
+
+color:
+    #315c60;
+```
+
+}
+
+.property-availability {
+
+```
+margin-top:
+    15px;
+
+font-size:
+    12px;
+
+color:
+    var(--aqua);
+
+font-weight:
+    600;
+```
+
+}
+
+/* =========================================================
+EMPTY STATE
+========================================================= */
+
+.empty-state {
+
+```
+background:
+    white;
+
+border-radius:
+    var(--radius);
+
+padding:
+    50px 30px;
+
+text-align:
+    center;
+
+color:
+    var(--muted);
+
+box-shadow:
+    var(--shadow);
+```
+
+}
+
+.empty-state strong {
+
+```
+color:
+    var(--navy);
+
+font-size:
+    17px;
+```
+
+}
+
+.empty-state p {
+
+```
+margin-bottom:
+    0;
+```
+
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
+
+footer {
+
+```
+text-align:
+    center;
+
+padding:
+    30px;
+
+color:
+    var(--muted);
+
+font-size:
+    12px;
+```
+
+}
+
+/* =========================================================
+ARCGIS UI REFINEMENT
+========================================================= */
+
+.esri-view {
+
+```
+border-radius:
+    var(--radius);
+```
+
+}
+
+.esri-ui-corner {
+
+```
+border-radius:
+    10px;
+```
+
+}
+
+.esri-widget {
+
+```
+border-radius:
+    8px;
+```
+
+}
+
+/* =========================================================
+RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+```
+.stats {
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+}
+
+
+.main {
+
+    grid-template-columns:
+        1fr;
+
+}
+
+
+.map-container {
+
+    min-height:
+        500px;
+
+}
+
+
+#viewDiv {
+
+    height:
+        500px;
+
+}
+
+
+#inventory {
+
+    max-height:
+        none;
+
+}
+```
+
+}
+
+/* =========================================================
+RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+```
+header {
+
+    padding:
+        28px 22px;
+
+}
+
+
+.filters,
+.stats,
+.main {
+
+    padding-left:
+        15px;
+
+    padding-right:
+        15px;
+
+}
+
+
+.filter-panel {
+
+    flex-direction:
+        column;
+
+    align-items:
+        stretch;
+
+}
+
+
+.filter-group select {
+
+    width:
+        100%;
+
+}
+
+
+.stats {
+
+    grid-template-columns:
+        1fr 1fr;
+
+}
+
+
+.stat {
+
+    padding:
+        16px;
+
+}
+
+
+.stat-value {
+
+    font-size:
+        23px;
+
+}
+
+
+.main {
+
+    gap:
+        15px;
+
+}
+
+
+.property-top {
+
+    flex-direction:
+        column;
+
+}
+
+
+.property-price {
+
+    font-size:
+        18px;
+
+}
+
+
+.map-container {
+
+    border-radius:
+        10px;
+
+}
+
+
+#viewDiv {
+
+    height:
+        450px;
+
+}
+```
+
+}
