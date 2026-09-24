@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Newport Residential Inventory</title>
+
+<!-- ArcGIS Maps SDK -->
+<link rel="stylesheet"
+      href="https://js.arcgis.com/4.34/esri/themes/light/main.css">
+
+<script src="https://js.arcgis.com/4.34/"></script>
+```
+
+</head>
+
+<body>
+
+<h1>Newport Residential Inventory</h1>
+
+<p>
+    Live inventory pulled directly from ArcGIS Online.
+</p>
+
+<hr>
+
+<h2>Filters</h2>
+
+<label>
+    Building:
+    <select id="buildingFilter">
+        <option value="">All Buildings</option>
+    </select>
+</label>
+
+  
+
+<label>
+    Bedrooms:
+    <select id="bedFilter">
+        <option value="">Any</option>
+        <option value="0">Studio</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4+</option>
+    </select>
+</label>
+
+  
+
+<label>
+    Availability:
+    <select id="availabilityFilter">
+        <option value="">All</option>
+        <option value="now">Available Now</option>
+    </select>
+</label>
+
+<hr>
+
+<h2 id="resultCount">Loading...</h2>
+
+<div id="viewDiv" style="height:500px;"></div>
+
+<hr>
+
+<div id="inventory"></div>
+
+<script>
+
+require([
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/layers/FeatureLayer"
+], function(Map, MapView, FeatureLayer) {
+
+    /*
+     * Public ArcGIS Online Feature Layer
+     */
+    const layer = new FeatureLayer({
+        url: "https://services8.arcgis.com/nGsWM8FNwGWwaJ6e/arcgis/rest/services/Newport_Vector_01/FeatureServer/0"
+    });
+
+    /*
+     * Map
+     */
+    const map = new Map({
+        basemap: "streets-vector",
+        layers: [layer]
+    });
+
+    const view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-74.05, 40.73],
+        zoom: 15
+    });
+
+    /*
+     * Load layer
+     */
+    layer.when(function() {
+
+        /*
+         * Populate building filter
+         */
+        layer.queryFeatures({
+            where: "1=1",
+            outFields: ["BuildName"],
+            returnGeometry: false,
+            orderByFields: ["BuildName"]
+        }).then(function(result) {
+
+            const buildings = [];
+
+            result.features.forEach(function(feature) {
+
+                const building = feature.attributes.BuildName;
+
+                if (
+                    building &&
+                    !buildings.includes(building)
+                ) {
+                    buildings.push(building);
+                }
+
+            });
+
+            const select =
+                document.getElementById("buildingFilter");
+
+            buildings.forEach(function(building) {
+
+                const option =
+                    document.createElement("option");
+
+                option.value = building;
+                option.textContent = building;
+
+                select.appendChild(option);
+
+            });
+
+        });
+
+        /*
+         * Initial inventory
+         */
+        loadInventory();
+
+    });
+
+
+    /*
+     * Load inventory
+     */
+    function loadInventory() {
+
+        const building =
+            document.getElementById("buildingFilter").value;
+
+        const beds =
+            document.getElementById("bedFilter").value;
+
+        const availability =
+            document.getElementById("availabilityFilter").value;
+
+
+        let where = "1=1";
+
+
+        /*
+         * Building
+         */
+        if (building) {
+
+            where +=
+                " AND BuildName = '" +
+                building.replace(/'/g, "''") +
+                "'";
+
+        }
+
+
+        /*
+         * Bedrooms
+         */
+        if (beds) {
+
+            if (beds === "4") {
+
+                where += " AND Beds >= 4";
+
+            } else {
+
+                where +=
+                    " AND Beds = " +
+                    Number(beds);
+
+            }
+
+        }
+
+
+        /*
+         * Available now
+         */
+        if (availability === "now") {
+
+            where +=
+                " AND AvailNow = 1";
+
+        }
+
+
+        /*
+         * Query ArcGIS Online
+         */
+        layer.queryFeatures({
+
+            where: where,
+
+            outFields: [
+                "BuildName",
+                "AppNumFull",
+                "Floor_1",
+                "BedBath",
+                "Beds",
+                "Baths",
+                "SQFT",
+                "AvailNow",
+                "AvailDate",
+                "Rent",
+                "RentWeb",
+                "Corner",
+                "View_",
+                "Height",
+                "ADA"
+            ],
+
+            returnGeometry: true,
+
+            orderByFields: [
+                "BuildName",
+                "Floor_1",
+                "AppNumFull"
+            ]
+
+        }).then(function(result) {
+
+            displayInventory(result.features);
+
+        });
+
+    }
+
+
+    /*
+     * Display inventory cards
+     */
+    function displayInventory(features) {
+
+        const container =
+            document.getElementById("inventory");
+
+        container.innerHTML = "";
+
+        document.getElementById("resultCount").textContent =
+            features.length +
+            " residences found";
+
+
+        features.forEach(function(feature) {
+
+            const a = feature.attributes;
+
+
+            const card =
+                document.createElement("div");
+
+
+            card.style.marginBottom = "25px";
+
+
+            const title =
+                a.AppNumFull ||
+                "Residence";
+
+
+            const building =
+                a.BuildName ||
+                "";
+
+
+            const rent =
+                a.Rent ?
+                "$" + Number(a.Rent).toLocaleString() :
+                "Rent not listed";
+
+
+            const sqft =
+                a.SQFT ?
+                Number(a.SQFT).toLocaleString() +
+                " SF" :
+                "";
+
+
+            const availability =
+                a.AvailNow === 1 ?
+                "Available Now" :
+                a.AvailDate ?
+                "Available " + a.AvailDate :
+                "";
+
+
+            card.innerHTML = `
+
+                <h3>${title}</h3>
+
+                <strong>${building}</strong>
+
+                <p>
+                    ${a.BedBath || ""}
+                    ${sqft ? " · " + sqft : ""}
+                    ${a.Floor_1 ? " · Floor " + a.Floor_1 : ""}
+                </p>
+
+                <p>
+                    <strong>${rent}</strong>
+                </p>
+
+                <p>
+                    ${availability}
+                </p>
+
+                ${
+                    a.Corner
+                    ? "<p>Corner: " + a.Corner + "</p>"
+                    : ""
+                }
+
+                ${
+                    a.View_
+                    ? "<p>View: " + a.View_ + "</p>"
+                    : ""
+                }
+
+            `;
+
+
+            /*
+             * Zoom to selected property
+             */
+            card.addEventListener("click", function() {
+
+                if (feature.geometry) {
+
+                    view.goTo({
+                        target: feature.geometry,
+                        zoom: 19
+                    });
+
+                }
+
+            });
+
+
+            container.appendChild(card);
+
+        });
+
+    }
+
+
+    /*
+     * Filter events
+     */
+    document
+        .getElementById("buildingFilter")
+        .addEventListener("change", loadInventory);
+
+
+    document
+        .getElementById("bedFilter")
+        .addEventListener("change", loadInventory);
+
+
+    document
+        .getElementById("availabilityFilter")
+        .addEventListener("change", loadInventory);
+
+});
+
+</script>
+
+</body>
+</html>
