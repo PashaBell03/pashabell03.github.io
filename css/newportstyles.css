@@ -1,54 +1,51 @@
-/* =========================================================
-NEWPORT RESIDENTIAL INVENTORY
-========================================================= */
-
 :root {
 
 ```
---navy: #172333;
+--navy: #18242d;
+--navy-light: #24343e;
 
---blue: #2f6f91;
+--accent: #5c8f91;
+--accent-light: #edf3f2;
 
---aqua: #6fb6b0;
-
---light-aqua: #e8f3f2;
-
---background: #f5f7f8;
+--background: #f3f4f3;
 
 --white: #ffffff;
 
---text: #26323b;
+--text: #263238;
+--muted: #748087;
 
---muted: #71808a;
-
---border: #dfe5e8;
+--border: #dce1e2;
 
 --shadow:
-    0 8px 30px
-    rgba(20, 40, 55, 0.08);
+    0 6px 24px rgba(
+        24,
+        36,
+        45,
+        0.08
+    );
 
---radius: 14px;
+--radius: 12px;
 ```
 
 }
 
-/* =========================================================
-GENERAL
-========================================================= */
+/* =====================================================
+RESET
+===================================================== */
 
 * {
   box-sizing: border-box;
   }
 
-html {
-scroll-behavior: smooth;
+html,
+body {
+margin: 0;
+padding: 0;
 }
 
 body {
 
 ```
-margin: 0;
-
 background:
     var(--background);
 
@@ -67,9 +64,9 @@ font-family:
 
 }
 
-/* =========================================================
+/* =====================================================
 HEADER
-========================================================= */
+===================================================== */
 
 header {
 
@@ -81,7 +78,7 @@ color:
     white;
 
 padding:
-    34px 45px;
+    42px 40px 65px;
 ```
 
 }
@@ -93,7 +90,7 @@ max-width:
     1500px;
 
 margin:
-    auto;
+    0 auto;
 ```
 
 }
@@ -101,20 +98,20 @@ margin:
 .eyebrow {
 
 ```
-text-transform:
-    uppercase;
+font-size:
+    10px;
 
 letter-spacing:
     3px;
 
-font-size:
-    11px;
+font-weight:
+    600;
 
 opacity:
     0.65;
 
 margin-bottom:
-    10px;
+    12px;
 ```
 
 }
@@ -127,16 +124,19 @@ margin:
 
 font-size:
     clamp(
-        32px,
-        4vw,
-        54px
+        38px,
+        5vw,
+        64px
     );
 
+line-height:
+    1;
+
 font-weight:
-    500;
+    400;
 
 letter-spacing:
-    -1.5px;
+    -2px;
 ```
 
 }
@@ -145,20 +145,20 @@ header p {
 
 ```
 margin:
-    10px 0 0;
+    16px 0 0;
 
 color:
-    #b8c7cf;
+    #c5cfd3;
 
 font-size:
-    16px;
+    15px;
 ```
 
 }
 
-/* =========================================================
+/* =====================================================
 FILTERS
-========================================================= */
+===================================================== */
 
 .filters {
 
@@ -167,7 +167,7 @@ max-width:
     1500px;
 
 margin:
-    -20px auto 30px;
+    -25px auto 30px;
 
 padding:
     0 25px;
@@ -187,6 +187,9 @@ z-index:
 background:
     var(--white);
 
+border:
+    1px solid var(--border);
+
 border-radius:
     var(--radius);
 
@@ -194,19 +197,19 @@ box-shadow:
     var(--shadow);
 
 padding:
-    20px 24px;
+    18px 20px;
 
 display:
     flex;
 
 gap:
-    18px;
-
-flex-wrap:
-    wrap;
+    14px;
 
 align-items:
     flex-end;
+
+flex-wrap:
+    wrap;
 ```
 
 }
@@ -229,17 +232,20 @@ gap:
 .filter-group label {
 
 ```
+color:
+    var(--muted);
+
 font-size:
-    10px;
+    9px;
+
+font-weight:
+    600;
 
 text-transform:
     uppercase;
 
 letter-spacing:
-    1px;
-
-color:
-    var(--muted);
+    1.2px;
 ```
 
 }
@@ -247,29 +253,32 @@ color:
 .filter-group select {
 
 ```
+appearance:
+    none;
+
+background:
+    #fafbfb;
+
 border:
     1px solid var(--border);
 
-background:
-    white;
+border-radius:
+    8px;
 
 color:
     var(--text);
-
-border-radius:
-    9px;
-
-padding:
-    10px 34px 10px 12px;
-
-min-width:
-    160px;
 
 cursor:
     pointer;
 
 font-size:
-    14px;
+    13px;
+
+min-width:
+    165px;
+
+padding:
+    10px 34px 10px 12px;
 ```
 
 }
@@ -278,7 +287,7 @@ font-size:
 
 ```
 border-color:
-    #b8c7cc;
+    #aab5b9;
 ```
 
 }
@@ -287,7 +296,8 @@ border-color:
 
 ```
 outline:
-    2px solid var(--aqua);
+    2px solid
+    var(--accent);
 
 outline-offset:
     1px;
@@ -295,9 +305,45 @@ outline-offset:
 
 }
 
-/* =========================================================
+#resetButton {
+
+```
+border:
+    1px solid var(--border);
+
+background:
+    var(--navy);
+
+color:
+    white;
+
+border-radius:
+    8px;
+
+padding:
+    10px 17px;
+
+font-size:
+    13px;
+
+cursor:
+    pointer;
+```
+
+}
+
+#resetButton:hover {
+
+```
+background:
+    var(--navy-light);
+```
+
+}
+
+/* =====================================================
 STATISTICS
-========================================================= */
+===================================================== */
 
 .stats {
 
@@ -306,7 +352,7 @@ max-width:
     1500px;
 
 margin:
-    0 auto 30px;
+    0 auto 25px;
 
 padding:
     0 25px;
@@ -318,7 +364,7 @@ grid-template-columns:
     repeat(4, 1fr);
 
 gap:
-    15px;
+    12px;
 ```
 
 }
@@ -329,14 +375,14 @@ gap:
 background:
     var(--white);
 
+border:
+    1px solid var(--border);
+
 border-radius:
     var(--radius);
 
 padding:
-    20px 24px;
-
-box-shadow:
-    var(--shadow);
+    17px 20px;
 ```
 
 }
@@ -347,14 +393,17 @@ box-shadow:
 color:
     var(--muted);
 
-text-transform:
-    uppercase;
+font-size:
+    9px;
+
+font-weight:
+    600;
 
 letter-spacing:
-    1px;
+    1.2px;
 
-font-size:
-    10px;
+text-transform:
+    uppercase;
 ```
 
 }
@@ -362,24 +411,24 @@ font-size:
 .stat-value {
 
 ```
-font-size:
-    30px;
+color:
+    var(--navy);
 
-margin-top:
-    7px;
+font-size:
+    25px;
 
 font-weight:
     500;
 
-color:
-    var(--navy);
+margin-top:
+    5px;
 ```
 
 }
 
-/* =========================================================
+/* =====================================================
 MAIN
-========================================================= */
+===================================================== */
 
 .main {
 
@@ -388,33 +437,36 @@ max-width:
     1500px;
 
 margin:
-    auto;
+    0 auto;
 
 padding:
-    0 25px 50px;
+    0 25px 45px;
 
 display:
     grid;
 
 grid-template-columns:
-    minmax(400px, 1fr)
-    minmax(350px, 0.8fr);
+    minmax(0, 1.25fr)
+    minmax(380px, 0.75fr);
 
 gap:
-    25px;
+    22px;
 ```
 
 }
 
-/* =========================================================
+/* =====================================================
 MAP
-========================================================= */
+===================================================== */
 
 .map-container {
 
 ```
 background:
     white;
+
+border:
+    1px solid var(--border);
 
 border-radius:
     var(--radius);
@@ -425,7 +477,7 @@ overflow:
 box-shadow:
     var(--shadow);
 
-min-height:
+height:
     700px;
 ```
 
@@ -434,24 +486,24 @@ min-height:
 #viewDiv {
 
 ```
-height:
-    700px;
-
 width:
+    100%;
+
+height:
     100%;
 ```
 
 }
 
-/* =========================================================
+/* =====================================================
 INVENTORY
-========================================================= */
+===================================================== */
 
 .inventory-panel {
 
 ```
-min-height:
-    700px;
+min-width:
+    0;
 ```
 
 }
@@ -466,10 +518,10 @@ justify-content:
     space-between;
 
 align-items:
-    baseline;
+    center;
 
-margin-bottom:
-    15px;
+margin:
+    0 0 13px;
 ```
 
 }
@@ -477,45 +529,48 @@ margin-bottom:
 .inventory-header h2 {
 
 ```
-margin:
-    0;
+color:
+    var(--navy);
 
 font-size:
-    21px;
+    20px;
 
 font-weight:
     500;
+
+margin:
+    0;
 ```
 
 }
 
-.inventory-count {
+#resultCount {
 
 ```
 color:
     var(--muted);
 
 font-size:
-    13px;
+    12px;
 ```
 
 }
 
-/* =========================================================
-INVENTORY SCROLL AREA
-========================================================= */
+/* =====================================================
+INVENTORY LIST
+===================================================== */
 
 #inventory {
 
 ```
 max-height:
-    700px;
+    660px;
 
 overflow-y:
     auto;
 
-padding-right:
-    6px;
+padding:
+    2px 5px 5px 1px;
 ```
 
 }
@@ -524,16 +579,7 @@ padding-right:
 
 ```
 width:
-    6px;
-```
-
-}
-
-#inventory::-webkit-scrollbar-track {
-
-```
-background:
-    transparent;
+    5px;
 ```
 
 }
@@ -542,26 +588,17 @@ background:
 
 ```
 background:
-    #cbd5d9;
+    #c8d0d2;
 
 border-radius:
-    20px;
+    10px;
 ```
 
 }
 
-#inventory::-webkit-scrollbar-thumb:hover {
-
-```
-background:
-    #aab8be;
-```
-
-}
-
-/* =========================================================
+/* =====================================================
 PROPERTY CARD
-========================================================= */
+===================================================== */
 
 .property-card {
 
@@ -569,28 +606,25 @@ PROPERTY CARD
 background:
     var(--white);
 
+border:
+    1px solid var(--border);
+
 border-radius:
     var(--radius);
 
 padding:
-    20px;
+    18px;
 
 margin-bottom:
-    14px;
-
-box-shadow:
-    var(--shadow);
+    11px;
 
 cursor:
     pointer;
 
-border:
-    1px solid transparent;
-
 transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+    transform 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 ```
 
 }
@@ -601,12 +635,11 @@ transition:
 transform:
     translateY(-2px);
 
-box-shadow:
-    0 12px 35px
-    rgba(20, 40, 55, 0.13);
-
 border-color:
-    var(--aqua);
+    var(--accent);
+
+box-shadow:
+    var(--shadow);
 ```
 
 }
@@ -632,17 +665,17 @@ gap:
 .property-title {
 
 ```
-margin:
-    0;
+color:
+    var(--navy);
 
 font-size:
-    20px;
+    18px;
 
 font-weight:
     500;
 
-color:
-    var(--navy);
+margin:
+    0;
 ```
 
 }
@@ -650,14 +683,14 @@ color:
 .property-building {
 
 ```
-margin-top:
-    4px;
-
 color:
     var(--muted);
 
 font-size:
-    13px;
+    12px;
+
+margin-top:
+    4px;
 ```
 
 }
@@ -665,17 +698,17 @@ font-size:
 .property-price {
 
 ```
-white-space:
-    nowrap;
+color:
+    var(--navy);
 
 font-size:
-    19px;
+    17px;
 
 font-weight:
     600;
 
-color:
-    var(--blue);
+white-space:
+    nowrap;
 ```
 
 }
@@ -690,10 +723,10 @@ flex-wrap:
     wrap;
 
 gap:
-    7px;
+    5px;
 
 margin-top:
-    16px;
+    14px;
 ```
 
 }
@@ -702,19 +735,19 @@ margin-top:
 
 ```
 background:
-    var(--light-aqua);
-
-border-radius:
-    6px;
-
-padding:
-    6px 9px;
-
-font-size:
-    12px;
+    var(--accent-light);
 
 color:
-    #315c60;
+    #466d6f;
+
+border-radius:
+    5px;
+
+font-size:
+    11px;
+
+padding:
+    5px 8px;
 ```
 
 }
@@ -722,24 +755,24 @@ color:
 .property-availability {
 
 ```
-margin-top:
-    15px;
+color:
+    var(--accent);
 
 font-size:
-    12px;
-
-color:
-    var(--aqua);
+    11px;
 
 font-weight:
     600;
+
+margin-top:
+    12px;
 ```
 
 }
 
-/* =========================================================
+/* =====================================================
 EMPTY STATE
-========================================================= */
+===================================================== */
 
 .empty-state {
 
@@ -747,20 +780,20 @@ EMPTY STATE
 background:
     white;
 
+border:
+    1px solid var(--border);
+
 border-radius:
     var(--radius);
 
 padding:
-    50px 30px;
+    45px 25px;
 
 text-align:
     center;
 
 color:
     var(--muted);
-
-box-shadow:
-    var(--shadow);
 ```
 
 }
@@ -772,7 +805,7 @@ color:
     var(--navy);
 
 font-size:
-    17px;
+    16px;
 ```
 
 }
@@ -780,27 +813,39 @@ font-size:
 .empty-state p {
 
 ```
-margin-bottom:
-    0;
+font-size:
+    13px;
+
+margin:
+    8px 0 0;
 ```
 
 }
 
-/* =========================================================
-FOOTER
-========================================================= */
+/* =====================================================
+ERROR
+===================================================== */
 
-footer {
+.error-box {
 
 ```
-text-align:
-    center;
+background:
+    #fff7f5;
+
+border:
+    1px solid #e6c8c1;
+
+border-radius:
+    8px;
 
 padding:
-    30px;
+    12px 14px;
+
+margin-bottom:
+    12px;
 
 color:
-    var(--muted);
+    #743e34;
 
 font-size:
     12px;
@@ -808,52 +853,55 @@ font-size:
 
 }
 
-/* =========================================================
-ARCGIS UI REFINEMENT
-========================================================= */
-
-.esri-view {
+.error-box small {
 
 ```
-border-radius:
-    var(--radius);
-```
+display:
+    block;
 
-}
+margin-top:
+    5px;
 
-.esri-ui-corner {
-
-```
-border-radius:
-    10px;
+opacity:
+    0.7;
 ```
 
 }
 
-.esri-widget {
+/* =====================================================
+FOOTER
+===================================================== */
+
+footer {
 
 ```
-border-radius:
-    8px;
+border-top:
+    1px solid var(--border);
+
+color:
+    var(--muted);
+
+font-size:
+    11px;
+
+padding:
+    25px;
+
+text-align:
+    center;
 ```
 
 }
 
-/* =========================================================
-RESPONSIVE — TABLET
-========================================================= */
+/* =====================================================
+MOBILE
+===================================================== */
 
-@media (max-width: 1000px) {
+@media (
+max-width: 1050px
+) {
 
 ```
-.stats {
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-}
-
-
 .main {
 
     grid-template-columns:
@@ -864,16 +912,8 @@ RESPONSIVE — TABLET
 
 .map-container {
 
-    min-height:
-        500px;
-
-}
-
-
-#viewDiv {
-
     height:
-        500px;
+        550px;
 
 }
 
@@ -888,17 +928,15 @@ RESPONSIVE — TABLET
 
 }
 
-/* =========================================================
-RESPONSIVE — MOBILE
-========================================================= */
-
-@media (max-width: 600px) {
+@media (
+max-width: 700px
+) {
 
 ```
 header {
 
     padding:
-        28px 22px;
+        32px 20px 55px;
 
 }
 
@@ -918,16 +956,17 @@ header {
 
 .filter-panel {
 
-    flex-direction:
-        column;
-
     align-items:
         stretch;
+
+    flex-direction:
+        column;
 
 }
 
 
-.filter-group select {
+.filter-group select,
+#resetButton {
 
     width:
         100%;
@@ -938,7 +977,7 @@ header {
 .stats {
 
     grid-template-columns:
-        1fr 1fr;
+        repeat(2, 1fr);
 
 }
 
@@ -946,7 +985,7 @@ header {
 .stat {
 
     padding:
-        16px;
+        14px;
 
 }
 
@@ -954,15 +993,15 @@ header {
 .stat-value {
 
     font-size:
-        23px;
+        20px;
 
 }
 
 
-.main {
+.map-container {
 
-    gap:
-        15px;
+    height:
+        450px;
 
 }
 
@@ -971,30 +1010,6 @@ header {
 
     flex-direction:
         column;
-
-}
-
-
-.property-price {
-
-    font-size:
-        18px;
-
-}
-
-
-.map-container {
-
-    border-radius:
-        10px;
-
-}
-
-
-#viewDiv {
-
-    height:
-        450px;
 
 }
 ```
